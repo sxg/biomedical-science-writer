@@ -1,0 +1,71 @@
+{
+  "name": "biomedical-science-writer",
+  "version": "2.0.0",
+  "description": "Draft biomedical research manuscripts from organized project folders with papers, data, figures, and GitHub code repositories",
+  "commands": [
+    {
+      "name": "draft",
+      "description": "Full workflow: ingest context, scope, literature review, methods, results, discussion, assembly",
+      "path": "commands/draft.md"
+    },
+    {
+      "name": "literature",
+      "description": "Process PDFs and web search to generate notes and Introduction draft",
+      "path": "commands/literature.md"
+    },
+    {
+      "name": "methods",
+      "description": "Analyze GitHub repository to generate Methods draft",
+      "path": "commands/methods.md"
+    },
+    {
+      "name": "results",
+      "description": "Analyze CSV data and figures to generate Results draft",
+      "path": "commands/results.md"
+    },
+    {
+      "name": "synthesize",
+      "description": "Generate Discussion and Abstract from accumulated notes",
+      "path": "commands/synthesize.md"
+    },
+    {
+      "name": "assemble",
+      "description": "Combine all drafts into final manuscript.md",
+      "path": "commands/assemble.md"
+    }
+  ],
+  "skills": [
+    {
+      "name": "biomedical-science-writer",
+      "path": "SKILL.md"
+    },
+    {
+      "name": "biomedical-science-writer:context-ingestion",
+      "path": "skills/context-ingestion/SKILL.md"
+    },
+    {
+      "name": "biomedical-science-writer:scoping",
+      "path": "skills/scoping/SKILL.md"
+    },
+    {
+      "name": "biomedical-science-writer:literature-review",
+      "path": "skills/literature-review/SKILL.md"
+    },
+    {
+      "name": "biomedical-science-writer:code-analyzer",
+      "path": "skills/code-analyzer/SKILL.md"
+    },
+    {
+      "name": "biomedical-science-writer:results-interpreter",
+      "path": "skills/results-interpreter/SKILL.md"
+    },
+    {
+      "name": "biomedical-science-writer:synthesis",
+      "path": "skills/synthesis/SKILL.md"
+    },
+    {
+      "name": "biomedical-science-writer:assembler",
+      "path": "skills/assembler/SKILL.md"
+    }
+  ]
+}

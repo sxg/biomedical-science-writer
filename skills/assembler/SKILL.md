@@ -1,0 +1,355 @@
+---
+name: assembler
+description: Combine all draft sections into final manuscript, apply formatting constraints, and generate reference list. Final step of biomedical-science-writer workflow. Requires all drafts/*.md files.
+---
+
+# Assembler
+
+Combines all drafted sections into a final manuscript, applies formatting and word limits, and generates the complete reference list.
+
+## Prerequisites
+
+Required files:
+- `scope.md` - Constraints (word limit, journal, citation style)
+- `drafts/abstract.md` - Abstract and title options
+- `drafts/introduction.md` - Introduction section
+- `drafts/methods.md` - Methods section
+- `drafts/results.md` - Results section
+- `drafts/discussion.md` - Discussion section
+- All `notes/papers/*.md` and `notes/search/*.md` for references
+
+## Workflow
+
+```
+[Load all drafts]
+     │
+     ▼
+[Compile reference list] ─── From all notes
+     │
+     ▼
+[Assemble manuscript] ─── Combine in order
+     │
+     ▼
+[Apply word limit] ─── Trim if needed
+     │
+     ▼
+[Final formatting] ─── Apply journal style
+     │
+     ▼
+[Output] ─── manuscript.md
+```
+
+## Step 1: Compile Reference List
+
+### Collect All Citations
+
+From each `notes/papers/*.md` and `notes/search/*.md`, extract:
+- Full citation string
+- Citation number used in text
+
+### Order References
+
+**Vancouver/ICMJE style**: Number in order of first appearance in text
+
+Scan through drafts in order:
+1. Introduction
+2. Methods  
+3. Results
+4. Discussion
+
+Assign numbers [1], [2], [3]... as each new source appears.
+
+### Format Reference List
+
+Based on `scope.md` citation style:
+
+**AMA/Vancouver:**
+```
+1. Smith JA, Jones BB, Wilson CC. Title of article. Journal. Year;Vol:Pages. doi:XX
+2. Author AA, Author BB. Title. Journal. Year;Vol:Pages.
+```
+
+**APA:**
+```
+Author, A. A., & Author, B. B. (Year). Title. Journal, Vol(Issue), Pages. https://doi.org/XX
+```
+
+## Step 2: Assemble Manuscript
+
+Create `manuscript.md` with this structure:
+
+```markdown
+# [Title from drafts/abstract.md]
+
+**Authors**: [To be added]
+
+**Affiliations**: [To be added]
+
+**Corresponding Author**: [To be added]
+
+---
+
+## Abstract
+
+[Content from drafts/abstract.md]
+
+**Keywords**: [keywords from abstract]
+
+---
+
+## Introduction
+
+[Content from drafts/introduction.md]
+
+---
+
+## Methods
+
+[Content from drafts/methods.md]
+
+---
+
+## Results
+
+[Content from drafts/results.md]
+
+---
+
+## Discussion
+
+[Content from drafts/discussion.md - includes Conclusion if combined]
+
+---
+
+## Conclusion
+
+[If separate from Discussion - extract from drafts/discussion.md]
+
+---
+
+## Acknowledgments
+
+[Placeholder]
+
+---
+
+## Conflicts of Interest
+
+[Placeholder]
+
+---
+
+## Funding
+
+[Placeholder]
+
+---
+
+## References
+
+[Compiled reference list]
+
+---
+
+## Figure Legends
+
+[From drafts/results.md]
+
+---
+
+## Tables
+
+[From drafts/results.md]
+
+---
+
+## Supplementary Materials
+
+[If applicable]
+```
+
+## Step 3: Apply Word Limit
+
+### Count Words
+
+```bash
+# Approximate word count (excluding references, figures, tables)
+```
+
+Count sections:
+- Abstract: [n] words (typically excluded from limit)
+- Introduction: [n] words
+- Methods: [n] words
+- Results: [n] words
+- Discussion: [n] words
+- **Total body**: [n] words
+
+### Compare to Limit
+
+From `scope.md`:
+- Word limit: [n]
+- Current count: [n]
+- Delta: [over/under by n]
+
+### If Over Limit
+
+Strategies to reduce word count:
+
+1. **Discussion** (usually easiest to trim):
+   - Reduce speculative language
+   - Consolidate similar points
+   - Remove redundant transitions
+
+2. **Methods** (if detailed):
+   - Move supplementary details to Supplementary Materials
+   - Combine sentences
+   - Remove obvious steps
+
+3. **Results** (carefully):
+   - Keep all statistics
+   - Reduce narrative around clear findings
+   - Move secondary findings to Supplementary
+
+4. **Introduction** (last resort):
+   - Reduce background breadth
+   - Tighten gap statement
+
+**Do NOT cut:**
+- Key statistics
+- Primary findings
+- Essential methods for reproducibility
+
+## Step 4: Final Formatting
+
+### Journal-Specific Adjustments
+
+Based on `scope.md` target journal, apply:
+
+**Radiology / RSNA journals:**
+- Structured abstract (Background, Purpose, Materials and Methods, Results, Conclusion)
+- "Materials and Methods" not just "Methods"
+- Abbreviations defined in abstract and again in text
+
+**JAMA network:**
+- Key Points box (Question, Findings, Meaning)
+- Structured abstract
+- Strict word limits
+
+**Nature/Science:**
+- Very concise
+- Methods often separate/supplementary
+- References in specific format
+
+### Section Headings
+
+Verify correct heading style:
+- All caps vs title case
+- Numbered vs unnumbered
+- Combined "Results and Discussion" vs separate
+
+### Citation Format
+
+Verify all citations match required style:
+- Superscript¹ vs brackets [1]
+- Author-date (Smith, 2023) if APA
+- Correct punctuation around citations
+
+## Step 5: Quality Checks
+
+### Consistency Checks
+
+- [ ] All figures referenced in text
+- [ ] All tables referenced in text
+- [ ] All references cited in text appear in reference list
+- [ ] All references in list are cited in text
+- [ ] Abbreviations defined on first use
+- [ ] Numbers in abstract match numbers in text
+- [ ] No contradictions between sections
+
+### Formatting Checks
+
+- [ ] Heading levels consistent
+- [ ] Citation format consistent throughout
+- [ ] Statistical reporting format consistent
+- [ ] Line spacing/margins per journal (if specified)
+
+### Final Proofread Notes
+
+Flag for user attention:
+- [ ] Author names and order
+- [ ] Affiliations
+- [ ] Corresponding author details
+- [ ] Acknowledgments
+- [ ] COI disclosures
+- [ ] Funding statement
+- [ ] Ethics statement / IRB number
+
+## Output
+
+### Primary Output
+
+Save to: `manuscript.md`
+
+### Word Count Summary
+
+```markdown
+## Word Count Summary
+
+| Section | Words |
+|---------|-------|
+| Abstract | XXX |
+| Introduction | XXX |
+| Methods | XXX |
+| Results | XXX |
+| Discussion | XXX |
+| **Body Total** | **XXX** |
+| Target | XXX |
+| Status | ✓ Under / ⚠️ Over by X |
+```
+
+### Completion Summary
+
+Return to user:
+
+> "Manuscript assembled. Here's the summary:
+> 
+> **Title**: [title]
+> **Word Count**: [n] / [limit] words
+> **References**: [n] sources
+> **Figures**: [n]
+> **Tables**: [n]
+> 
+> **Needs your input:**
+> - Author list and affiliations
+> - Acknowledgments
+> - Conflicts of interest
+> - Funding statement
+> 
+> The manuscript is saved to `manuscript.md`."
+
+## Files Generated
+
+Final project structure:
+
+```
+project/
+├── papers/
+├── data/
+├── figures/
+├── code/
+├── notes/
+│   ├── papers/*.md
+│   ├── search/*.md
+│   ├── code-analysis.md
+│   └── data-analysis.md
+├── drafts/
+│   ├── introduction.md
+│   ├── methods.md
+│   ├── results.md
+│   ├── discussion.md
+│   └── abstract.md
+├── config.md
+├── inventory.md
+├── scope.md
+└── manuscript.md          ← Final output
+```
