@@ -1,30 +1,69 @@
 ---
 name: assembler
-description: Combine all draft sections into final manuscript, apply formatting constraints, and generate reference list. Final step of biomedical-science-writer workflow. Requires all drafts/*.md files.
+description: Combine all draft sections into final manuscript, apply formatting constraints, and generate reference list. Final step of biomedical-science-writer workflow. Requires academic reviewer approval and all drafts/*.md files.
 ---
 
 # Assembler
 
 Combines all drafted sections into a final manuscript, applies formatting and word limits, and generates the complete reference list.
 
+## Critical Prerequisite: Academic Reviewer Approval
+
+**Do NOT proceed with assembly until the academic reviewer has signed off.**
+
+Before assembling:
+1. Check `notes/reviewer-feedback.md` exists
+2. Verify all critical issues have been addressed
+3. Confirm sign-off status is "Approved" or "Approved with minor revisions"
+
+If reviewer sign-off is missing or issues remain unresolved:
+```
+## Assembly Blocked
+
+The academic reviewer has not approved this manuscript for assembly.
+
+**Status**: [Not reviewed / Critical issues pending / User input required]
+
+**Outstanding Issues**:
+1. [Issue from reviewer-feedback.md]
+2. [Issue from reviewer-feedback.md]
+
+**Action Required**:
+- Address the issues listed in notes/reviewer-feedback.md
+- Re-run the academic reviewer (/biomedical-science-writer:review)
+- Obtain sign-off before proceeding
+
+Assembly cannot continue until these issues are resolved.
+```
+
 ## Prerequisites
 
 Required files:
 - `scope.md` - Constraints (word limit, journal, citation style)
+- `notes/reviewer-feedback.md` - **Academic reviewer sign-off (REQUIRED)**
+- `notes/statistical-review.md` - Biostatistician sign-off
 - `drafts/abstract.md` - Abstract and title options
 - `drafts/introduction.md` - Introduction section
 - `drafts/methods.md` - Methods section
 - `drafts/results.md` - Results section
 - `drafts/discussion.md` - Discussion section
-- All `notes/papers/*.md` and `notes/search/*.md` for references
+- `notes/papers-library/*.pdf` - All source PDFs
+- `notes/bibliography.md` - Master reference list
+- All `notes/papers/*.md`, `notes/search/*.md`, `notes/references/*.md` for reference details
 
 ## Workflow
 
 ```
+[Verify Academic Reviewer Sign-Off] ─── REQUIRED
+     │
+     ▼
+[Verify Biostatistician Sign-Off] ─── REQUIRED
+     │
+     ▼
 [Load all drafts]
      │
      ▼
-[Compile reference list] ─── From all notes
+[Compile reference list] ─── From notes/bibliography.md
      │
      ▼
 [Assemble manuscript] ─── Combine in order
@@ -38,6 +77,39 @@ Required files:
      ▼
 [Output] ─── manuscript.md
 ```
+
+## Step 0: Verify Sign-Offs
+
+### Academic Reviewer Sign-Off
+
+Read `notes/reviewer-feedback.md` and confirm:
+
+```markdown
+## Sign-Off Verification
+
+**Academic Reviewer**:
+- Sign-off status: [Approved / Approved with minor revisions / NOT APPROVED]
+- Critical issues: [0] remaining
+- Major issues: [X] addressed, [Y] acknowledged
+- Date: [timestamp]
+
+**Proceed?**: [ ] Yes / [ ] No — [reason if no]
+```
+
+### Biostatistician Sign-Off
+
+Read `notes/statistical-review.md` and confirm:
+
+```markdown
+**Biostatistician**:
+- Sign-off status: [Approved / NOT APPROVED]
+- Statistical issues: [0] remaining
+- Date: [timestamp]
+
+**Proceed?**: [ ] Yes / [ ] No — [reason if no]
+```
+
+**If either sign-off is missing or not approved, STOP and report to user.**
 
 ## Step 1: Compile Reference List
 

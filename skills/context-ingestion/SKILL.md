@@ -236,7 +236,7 @@ Save to: `project/inventory.md`
 Create notes directory structure:
 
 ```bash
-mkdir -p notes/papers notes/search drafts
+mkdir -p notes/papers notes/search notes/references notes/papers-library drafts
 ```
 
 Return to parent skill with inventory summary.

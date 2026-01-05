@@ -7,6 +7,50 @@ description: Draft biomedical research manuscripts from research data. Use when 
 
 Orchestrates the creation of scientific manuscript drafts through a structured, note-generating workflow.
 
+## Core Principle: No Silent Assumptions
+
+**This skill NEVER makes assumptions about user data without explicit confirmation.**
+
+When encountering ambiguity in data, code, or figures:
+1. **STOP** and ask the user for clarification
+2. **DOCUMENT** all clarifications received
+3. **VERIFY** interpretations before drafting
+
+It is better to ask too many questions than to misinterpret the user's research. Every clarification is logged in the relevant notes files for transparency.
+
+## Specialist Agents
+
+This skill employs specialist agents for domain expertise:
+
+| Agent | Role | Invoked During |
+|-------|------|----------------|
+| **Biostatistician** | Statistical accuracy review | Methods, Results |
+| **Academic Reviewer** | Publication readiness review | Before Assembly |
+
+### Biostatistician Agent
+
+The biostatistician (`skills/biostatistician/SKILL.md`) ensures:
+- Appropriate statistical test selection
+- Assumption checking and validation
+- Correct statistical reporting format
+- Effect sizes with confidence intervals
+- Multiple comparison handling
+
+**No statistical claims are published without biostatistician sign-off.**
+
+### Academic Reviewer Agent
+
+The academic reviewer (`skills/academic-reviewer/SKILL.md`) acts as a skeptical peer reviewer:
+- Verifies every claim is supported by its cited reference
+- Validates the hypothesis is clinically meaningful and testable
+- Confirms methods actually test the stated hypothesis
+- **Independently interprets results** before reading Discussion
+- Identifies discrepancies between evidence and author conclusions
+- Flags overstatements and unsupported claims
+- Routes issues to other agents or user for resolution
+
+**No manuscript proceeds to final assembly without academic reviewer approval.**
+
 ## Expected Project Structure
 
 User must organize their project folder as follows:
@@ -54,13 +98,22 @@ The skill generates intermediate notes and drafts:
 ```
 project/
 ├── notes/
-│   ├── papers/              # One .md per PDF analyzed
+│   ├── papers/              # User-provided PDFs (Source 1)
 │   │   ├── smith-2023.md
 │   │   └── jones-2022.md
-│   ├── search/              # Web search results
+│   ├── search/              # Web search results (Source 2)
 │   │   └── pubmed-search-001.md
+│   ├── references/          # Reference-chained papers (Source 3)
+│   │   └── foundational-paper.md
+│   ├── papers-library/      # ALL PDFs stored centrally
+│   │   ├── smith-2023.pdf
+│   │   └── jones-2022.pdf
+│   ├── bibliography.md      # Master bibliography with citations/links
+│   ├── literature-synthesis.md  # Aggregated themes and findings
 │   ├── code-analysis.md     # GitHub repo analysis
-│   └── data-analysis.md     # Data/figures interpretation
+│   ├── data-analysis.md     # Data/figures interpretation
+│   ├── statistical-review.md    # Biostatistician sign-off report
+│   └── reviewer-feedback.md     # Academic reviewer feedback
 ├── drafts/
 │   ├── introduction.md
 │   ├── methods.md
@@ -90,14 +143,16 @@ project/
 │
 ▼
 [3. Literature Review] ─── skills/literature-review/SKILL.md
-│   - Process PDFs → notes/papers/*.md
-│   - Web search for gaps → notes/search/*.md
+│   - Source 1: Process user PDFs → notes/papers/*.md
+│   - Source 2: Web search (PubMed) → notes/search/*.md
+│   - Source 3: Reference chaining → notes/references/*.md
 │   - Draft Introduction → drafts/introduction.md
 │
 ▼
 [4. Code Analysis] ─── skills/code-analyzer/SKILL.md
 │   - Analyze GitHub repository
 │   - Extract methodology → notes/code-analysis.md
+│   - ★ BIOSTATISTICIAN REVIEW → Validate methods
 │   - Draft Methods → drafts/methods.md
 │
 ▼
@@ -105,6 +160,7 @@ project/
 │   - Analyze CSV data files
 │   - Interpret figures
 │   - Generate → notes/data-analysis.md
+│   - ★ BIOSTATISTICIAN REVIEW → Validate statistics
 │   - Draft Results → drafts/results.md
 │
 ▼
@@ -115,7 +171,17 @@ project/
 │   - Draft Abstract → drafts/abstract.md
 │
 ▼
-[7. Assembly] ─── skills/assembler/SKILL.md
+[7. Academic Review] ─── skills/academic-reviewer/SKILL.md
+│   - Verify claims against citations
+│   - Validate hypothesis and methods alignment
+│   - ★ INDEPENDENTLY interpret results
+│   - Compare to Discussion conclusions
+│   - Generate → notes/reviewer-feedback.md
+│   - Route issues to agents or user
+│
+▼
+[8. Assembly] ─── skills/assembler/SKILL.md
+    - Confirm reviewer approval
     - Combine all drafts
     - Apply formatting constraints
     - Generate → manuscript.md
@@ -156,11 +222,14 @@ Read `skills/scoping/SKILL.md` and follow it to:
 
 ### Step 3: Literature Review
 
-Read `skills/literature-review/SKILL.md` and follow it to:
-- Process each PDF in `papers/` → `notes/papers/*.md`
-- Conduct web searches to fill gaps → `notes/search/*.md`
-- Synthesize into Introduction draft
-- Output: `drafts/introduction.md`
+Read `skills/literature-review/SKILL.md` and follow it to discover papers from three sources:
+- **Source 1**: Process user-provided PDFs in `papers/` → `notes/papers/*.md`
+- **Source 2**: Web search (PubMed, Google Scholar) for gaps → `notes/search/*.md`
+- **Source 3**: Reference chaining from papers found above → `notes/references/*.md`
+- **Save ALL PDFs** to central library → `notes/papers-library/*.pdf`
+- **Validate** all papers have citations and links → `notes/bibliography.md`
+- Synthesize findings across all sources → `notes/literature-synthesis.md`
+- Draft Introduction using synthesis → `drafts/introduction.md`
 
 ### Step 4: Code Analysis
 

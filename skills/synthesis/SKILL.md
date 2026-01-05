@@ -12,7 +12,9 @@ Integrates all accumulated notes and prior drafts to generate the Discussion and
 Required files:
 - `scope.md` - Research question and key findings
 - `notes/papers/*.md` - Literature notes
-- `notes/search/*.md` - Web search notes  
+- `notes/search/*.md` - Web search notes
+- `notes/references/*.md` - Reference-chained paper notes
+- `notes/literature-synthesis.md` - Aggregated themes and findings (key input!)
 - `notes/code-analysis.md` - Methods context
 - `notes/data-analysis.md` - Results context
 - `drafts/introduction.md` - For narrative continuity
@@ -39,17 +41,35 @@ Required files:
 
 ## Step 1: Load and Organize Materials
 
+### Read Literature Synthesis (Primary Reference)
+
+Start with `notes/literature-synthesis.md` - this document already contains:
+- Source inventory with relationships to our work
+- Key themes identified across all papers
+- Findings that support our hypothesis
+- Contradictory findings to address
+- Methodological patterns
+- Gaps our study addresses
+- Citation map showing foundational papers
+- Implications for Discussion section
+
+This synthesis is the primary guide for drafting the Discussion.
+
 ### Read All Notes
 
 ```bash
-ls notes/papers/*.md notes/search/*.md notes/*.md
+ls notes/papers/*.md notes/search/*.md notes/references/*.md notes/*.md
 ```
 
-Create a mental map:
-- Which sources support our findings?
-- Which sources provide contrasting results?
-- Which sources explain mechanisms?
-- Which sources address limitations?
+Use individual paper notes for specific quotes and statistics.
+
+### Mapping from Literature Synthesis
+
+The synthesis document provides:
+- Which sources support our findings
+- Which sources provide contrasting results
+- Which sources explain mechanisms
+- Which sources address limitations
 
 ### Extract Key Results
 
@@ -68,14 +88,19 @@ From `scope.md`:
 
 ## Step 2: Map Findings to Literature
 
-Create a mapping table:
+Use `notes/literature-synthesis.md` as the starting point - it already contains:
+- "Findings That Support Our Hypothesis" table
+- "Contradictory or Conflicting Findings" table
+- "Implications for Discussion" section
+
+Extend this mapping with our actual results from `drafts/results.md`:
 
 | Our Finding | Supporting Literature | Contrasting Literature | Notes |
 |-------------|----------------------|------------------------|-------|
-| [Primary result] | [Author1], [Author2] | [Author3] | [why contrast] |
-| [Secondary result] | [Author4] | None | |
+| [Primary result] | [from synthesis] | [from synthesis] | [why contrast] |
+| [Secondary result] | [from synthesis] | None | |
 
-For each finding, identify:
+For each finding, the synthesis document identifies:
 1. **Agreement**: Papers with similar findings
 2. **Disagreement**: Papers with different findings (explain why)
 3. **Mechanism**: Papers that explain why this occurs

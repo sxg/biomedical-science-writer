@@ -7,6 +7,62 @@ description: Analyze GitHub repository to extract methodology and generate the M
 
 Analyzes the cloned GitHub repository to understand the computational methodology, then generates structured notes and drafts the Methods section.
 
+## Critical Principle: No Silent Assumptions
+
+**NEVER assume what the code does without user confirmation.**
+
+Code can be complex and context-dependent. When uncertain about methodology:
+
+### When to Pause and Ask
+
+1. **Unclear analysis purpose**
+   - What is this script/notebook trying to accomplish?
+   - Is this the main analysis or a side experiment?
+
+2. **Ambiguous parameters**
+   - Hardcoded values without explanation (what does `threshold = 0.7` mean?)
+   - Configuration options that affect results
+
+3. **Multiple analysis paths**
+   - Which branch/version of the code was used for final results?
+   - Are there deprecated scripts that shouldn't be documented?
+
+4. **Statistical method uncertainty**
+   - Is this the correct interpretation of the test being performed?
+   - What assumptions were made (normality, independence, etc.)?
+
+5. **Missing context**
+   - What does variable `X` represent in domain terms?
+   - Why was this specific approach chosen over alternatives?
+
+### How to Ask
+
+```
+I have questions about the code before writing the Methods section:
+
+**File**: analysis.ipynb, Cell 15
+
+**Question**: I see `model = RandomForestClassifier(n_estimators=100, max_depth=5)`.
+- Were these hyperparameters tuned, or are they defaults?
+- If tuned, what was the tuning method (grid search, random search)?
+- Should I report these specific values in the Methods?
+
+**Why this matters**: Reviewers often ask about hyperparameter selection.
+```
+
+### Document All Clarifications
+
+Log clarifications in `notes/code-analysis.md`:
+
+```markdown
+## Clarifications Received
+
+| File | Question | User Response |
+|------|----------|---------------|
+| analysis.ipynb | Hyperparameter tuning? | Grid search with 5-fold CV |
+| preprocess.py | Why z-score normalization? | Standard for this imaging modality |
+```
+
 ## Prerequisites
 
 - `scope.md` must exist
@@ -25,13 +81,22 @@ Analyzes the cloned GitHub repository to understand the computational methodolog
 [Identify Key Files] ─── Notebooks, scripts, configs
      │
      ▼
+[CHECKPOINT: Clarify Code Purpose] ─── Ask about unclear scripts/params
+     │
+     ▼
 [Analyze Code Flow] ─── Data loading → Processing → Analysis → Output
+     │
+     ▼
+[CHECKPOINT: Verify Methodology] ─── Confirm interpretation with user
      │
      ▼
 [Extract Methodology] ─── Generate notes/code-analysis.md
      │
      ▼
-[Draft Methods] ─── drafts/methods.md
+[BIOSTATISTICIAN REVIEW] ─── Validate statistical methods
+     │                        └── skills/biostatistician/SKILL.md
+     ▼
+[Draft Methods] ─── drafts/methods.md (with statistical sign-off)
 ```
 
 ## Step 1: Scan Repository Structure
@@ -265,7 +330,45 @@ code/
 - [Any unusual or noteworthy approaches]
 ```
 
-## Step 5: Draft Methods Section
+## Step 5: Biostatistician Review
+
+**Before drafting Methods, invoke the biostatistician agent for statistical review.**
+
+Read `skills/biostatistician/SKILL.md` and execute Phase 1 (Code Analysis Review):
+
+1. **Create statistical methods inventory** from code analysis
+2. **Check assumptions** for each test identified
+3. **Verify test appropriateness** for data types
+4. **Assess multiple comparisons** handling
+5. **Evaluate sample size** adequacy
+
+### Biostatistician Checkpoint
+
+The biostatistician must confirm:
+
+```markdown
+## Statistical Methods Review
+
+| Method | Appropriate? | Assumptions Checked? | Recommendation |
+|--------|--------------|---------------------|----------------|
+| [test 1] | ✓/✗ | ✓/✗ | [approve/revise] |
+| [test 2] | ✓/✗ | ✓/✗ | [approve/revise] |
+
+**Statistical Sign-Off**: [ ] Approved for Methods drafting
+```
+
+**Do NOT proceed to Methods draft until biostatistician approves.**
+
+If issues identified:
+1. Document concerns in `notes/code-analysis.md`
+2. Flag for user attention
+3. Suggest alternative methods if appropriate
+
+---
+
+## Step 6: Draft Methods Section
+
+**Only proceed after biostatistician sign-off from Step 5.**
 
 Create `drafts/methods.md`:
 
@@ -320,11 +423,13 @@ Statistical analysis was performed using Python [version] with [packages]. [Addi
 ## Output
 
 Save to:
-- `notes/code-analysis.md` - Detailed analysis
-- `drafts/methods.md` - Methods section draft
+- `notes/code-analysis.md` - Detailed analysis (includes statistical review)
+- `drafts/methods.md` - Methods section draft (with biostatistician approval)
 
 Return to parent skill with summary:
 - Files analyzed: [n]
 - Statistical tests identified: [list]
 - ML approach: [yes/no, type]
+- Biostatistician status: [approved / revisions needed]
+- Statistical issues: [list if any]
 - Methods word count: [n]
