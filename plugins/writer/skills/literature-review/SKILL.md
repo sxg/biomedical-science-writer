@@ -357,6 +357,26 @@ Create `notes/literature-synthesis.md`:
 
 ---
 
+## Paper Citation Tracker
+
+**IMPORTANT**: Every paper the user provided MUST be tracked here. Mark where each paper will be cited.
+
+| # | Citation | Note File | Introduction | Methods | Discussion | Status |
+|---|----------|-----------|--------------|---------|------------|--------|
+| 1 | Smith et al., 2023 | notes/papers/smith-2023.md | ✓ Para 1 | | ✓ Compare | Planned |
+| 2 | Jones et al., 2022 | notes/papers/jones-2022.md | ✓ Para 2 | | | Planned |
+| 3 | Wilson et al., 2021 | notes/papers/wilson-2021.md | | | ✓ Mechanism | Planned |
+| 4 | Brown et al., 2020 | notes/papers/brown-2020.md | | | | ⚠️ Review Needed |
+
+**Status Legend**:
+- **Planned**: Paper has identified citation locations
+- **⚠️ Review Needed**: Paper doesn't fit obvious location — must review during Discussion drafting
+- **Excluded**: Paper not relevant after review (requires justification)
+
+**Papers Needing Discussion Review**: [list papers marked "Review Needed" — these MUST be reconsidered during Discussion drafting]
+
+---
+
 ## Source Inventory
 
 | # | Citation | Type | Relationship |
@@ -488,6 +508,10 @@ Save to:
 
 Return summary:
 - Papers processed: [n]
+- Papers with planned citations: [n]
+- Papers needing Discussion review: [n]
 - Papers with issues: [n]
 - Key themes identified: [n]
 - Introduction word count: [n]
+
+**CRITICAL**: If papers_needing_review > 0, these MUST be addressed during synthesis. Do not skip papers.

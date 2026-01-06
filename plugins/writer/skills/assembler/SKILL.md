@@ -112,6 +112,54 @@ Read `notes/statistical-review.md` and confirm:
 
 **If either sign-off is missing or not approved, STOP and report to user.**
 
+## Step 0c: Verify Paper Citation Coverage
+
+**Check that user-provided papers were not ignored.**
+
+Read `notes/literature-synthesis.md` and find the "Final Citation Coverage Report" section.
+
+### Verify Coverage
+
+```markdown
+## Paper Citation Coverage Check
+
+**Papers Provided by User**: [n]
+**Papers Cited in Manuscript**: [n]
+**Papers Excluded**: [n]
+**Coverage Rate**: [n]%
+
+### Coverage Status
+
+- [ ] ✓ Coverage ≥80% — Acceptable
+- [ ] ⚠️ Coverage <80% — Review required
+```
+
+### If Coverage < 80%
+
+**STOP and alert the user:**
+
+```
+## Low Paper Citation Coverage Detected
+
+Only [n]% of the papers you provided were cited in the manuscript.
+
+**Cited** ([n] papers):
+- [list]
+
+**Not Cited** ([n] papers):
+- [paper] — Reason: [from excluded papers section]
+- [paper] — Reason: [from excluded papers section]
+
+**Options:**
+1. Proceed anyway (acknowledge some papers weren't relevant)
+2. Return to synthesis to find places for more papers
+3. Review exclusion reasons and decide which to include
+
+Would you like me to proceed with assembly or revisit the paper usage?
+```
+
+**Do not proceed until user confirms or coverage is addressed.**
+
 ## Step 1: Compile Reference List
 
 ### Collect All Citations
@@ -448,19 +496,20 @@ Save to: `manuscript.md`
 Return to user:
 
 > "Manuscript assembled. Here's the summary:
-> 
+>
 > **Title**: [title]
 > **Word Count**: [n] / [limit] words
-> **References**: [n] sources
+> **References**: [n] sources cited
+> **Paper Coverage**: [n]/[n] user-provided papers cited ([n]%)
 > **Figures**: [n]
 > **Tables**: [n]
-> 
+>
 > **Needs your input:**
 > - Author list and affiliations
 > - Acknowledgments
 > - Conflicts of interest
 > - Funding statement
-> 
+>
 > The manuscript is saved to `manuscript.md`."
 
 ## Files Generated

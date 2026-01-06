@@ -42,6 +42,7 @@ Required files:
 ### Read Literature Synthesis (Primary Reference)
 
 Start with `notes/literature-synthesis.md` - this document already contains:
+- **Paper Citation Tracker** — Shows which papers have planned citations and which need review
 - Source inventory with relationships to our work
 - Key themes identified across all papers
 - Findings that support our hypothesis
@@ -52,6 +53,21 @@ Start with `notes/literature-synthesis.md` - this document already contains:
 - Implications for Discussion section
 
 This synthesis is the primary guide for drafting the Discussion.
+
+### CRITICAL: Check Paper Citation Tracker
+
+**Before drafting Discussion**, review the Paper Citation Tracker table:
+
+1. **Count papers with "⚠️ Review Needed" status** — these MUST be actively considered
+2. **For each paper needing review**, read the note file and find a place to cite it:
+   - Can it support a claim in Comparison with Literature?
+   - Does it provide mechanistic insight?
+   - Does it contextualize practical implications?
+   - Does it address a limitation?
+   - Can it suggest future directions?
+3. **If truly irrelevant**: Mark as "Excluded" with documented justification
+
+**The user provided these papers for a reason. Do not ignore them.**
 
 ### Read All Notes
 
@@ -282,14 +298,84 @@ Title guidelines:
 - Informative > clever
 - Include key method and finding if possible
 
+## Step 6: Validate Paper Citation Coverage
+
+**CRITICAL STEP**: Before completing, verify all papers were considered.
+
+### Generate Citation Coverage Report
+
+Update `notes/literature-synthesis.md` with final citation status:
+
+```markdown
+## Final Citation Coverage Report
+
+**Generated**: [timestamp]
+**Total Papers Provided**: [n]
+**Papers Cited**: [n]
+**Papers Excluded**: [n]
+
+### Citation Summary
+
+| # | Citation | Cited In | Location |
+|---|----------|----------|----------|
+| 1 | Smith et al., 2023 | Introduction | Para 1, claim about X |
+| 2 | Jones et al., 2022 | Discussion | Comparison section |
+| 3 | Wilson et al., 2021 | Discussion | Mechanism section |
+| 4 | Brown et al., 2020 | Discussion | Future directions |
+
+### Excluded Papers (Requires Justification)
+
+| Paper | Reason for Exclusion |
+|-------|---------------------|
+| [citation] | [specific reason: e.g., "Study population too different", "Methodology not comparable"] |
+
+**Coverage Rate**: [cited/total]%
+```
+
+### Coverage Threshold
+
+- **Target**: ≥80% of user-provided papers should be cited
+- **If below 80%**: Review excluded papers again — can any be cited for:
+  - General background context?
+  - Methodological precedent?
+  - Future research suggestions?
+- **Justification required**: Every excluded paper needs a documented reason
+
+### Present Coverage to User
+
+Before proceeding, inform the user:
+
+```
+## Citation Coverage Summary
+
+I've drafted the Discussion and Abstract. Here's the paper usage:
+
+- **Papers provided**: [n]
+- **Papers cited**: [n] ([%])
+- **Papers excluded**: [n]
+
+### Excluded Papers
+[For each excluded paper, explain why]
+
+Would you like me to:
+1. Proceed to academic review
+2. Find places to cite more papers
+3. Review exclusion decisions
+```
+
 ## Output
 
 Save to:
 - `drafts/discussion.md` - Discussion section
 - `drafts/abstract.md` - Structured abstract with title options
+- `notes/literature-synthesis.md` - Updated with Final Citation Coverage Report
 
 Return to parent skill with summary:
 - Discussion word count: [n]
 - Abstract word count: [n]
 - Literature sources cited in Discussion: [n]
+- **Papers provided**: [n]
+- **Papers cited**: [n]
+- **Papers excluded**: [n] (with reasons)
+- **Coverage rate**: [n]%
 - Title options: [n]
