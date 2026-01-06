@@ -50,7 +50,7 @@ Required files:
 - `drafts/discussion.md` - Discussion section
 - `notes/papers-library/*.pdf` - All source PDFs
 - `notes/bibliography.md` - Master reference list
-- All `notes/papers/*.md`, `notes/search/*.md`, `notes/references/*.md` for reference details
+- All `notes/papers/*.md` for reference details
 
 ## Workflow
 
@@ -116,7 +116,7 @@ Read `notes/statistical-review.md` and confirm:
 
 ### Collect All Citations
 
-From each `notes/papers/*.md` and `notes/search/*.md`, extract:
+From each `notes/papers/*.md`, extract:
 - Full citation string
 - Citation number used in text
 

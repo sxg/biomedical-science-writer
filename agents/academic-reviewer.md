@@ -167,7 +167,7 @@ For EVERY claim with a citation, verify it against the source:
 
 ### Claim 1: "[Claim as stated in manuscript]"
 **Citation**: Smith et al., 2023
-**Source location**: notes/papers/smith-2023.md (or notes/search/...)
+**Source location**: notes/papers/smith-2023.md
 
 **What the source actually says**:
 > [Quote or paraphrase from source]

@@ -235,14 +235,12 @@ Read `skills/scoping/SKILL.md` and follow it to:
 
 ### Step 3: Literature Review
 
-Read `skills/literature-review/SKILL.md` and follow it to discover papers from three sources:
-- **Source 1**: Process user-provided PDFs in `papers/` → `notes/papers/*.md`
-- **Source 2**: Web search (PubMed, Google Scholar) for gaps → `notes/search/*.md`
-- **Source 3**: Reference chaining from papers found above → `notes/references/*.md`
-- **Save ALL PDFs** to central library → `notes/papers-library/*.pdf`
-- **Validate** all papers have citations and links → `notes/bibliography.md`
-- Synthesize findings across all sources → `notes/literature-synthesis.md`
-- Draft Introduction using synthesis → `drafts/introduction.md`
+Read `skills/literature-review/SKILL.md` and follow it to:
+- Process user-provided PDFs in `papers/` via isolated subagents → `notes/papers/*.md`
+- Save PDFs to central library → `notes/papers-library/*.pdf`
+- Generate bibliography with citations → `notes/bibliography.md`
+- Synthesize findings → `notes/literature-synthesis.md`
+- Draft Introduction → `drafts/introduction.md`
 
 ### Step 4: Code Analysis
 

@@ -11,9 +11,7 @@ Integrates all accumulated notes and prior drafts to generate the Discussion and
 
 Required files:
 - `scope.md` - Research question and key findings
-- `notes/papers/*.md` - Literature notes
-- `notes/search/*.md` - Web search notes
-- `notes/references/*.md` - Reference-chained paper notes
+- `notes/papers/*.md` - Literature notes (from user-provided PDFs)
 - `notes/literature-synthesis.md` - Aggregated themes and findings (key input!)
 - `notes/code-analysis.md` - Methods context
 - `notes/data-analysis.md` - Results context
@@ -58,7 +56,7 @@ This synthesis is the primary guide for drafting the Discussion.
 ### Read All Notes
 
 ```bash
-ls notes/papers/*.md notes/search/*.md notes/references/*.md notes/*.md
+ls notes/papers/*.md notes/*.md
 ```
 
 Use individual paper notes for specific quotes and statistics.

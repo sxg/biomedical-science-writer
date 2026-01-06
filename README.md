@@ -24,7 +24,7 @@ git clone https://github.com/satyam/biomedical-science-writer.git
 
 - **8-Step Workflow**: Context ingestion → Scoping → Literature review → Code analysis → Results interpretation → Synthesis → Academic review → Assembly
 - **Specialist Agents**: Biostatistician for statistical validation, Academic reviewer for publication readiness
-- **Three-Source Literature Review**: User PDFs, web search (PubMed), and reference chaining
+- **Subagent-Based Literature Review**: Process user-provided PDFs via isolated subagents (prevents context overflow)
 - **IRB Document Support**: Auto-extract ethics statements, scope comparison checkpoints
 - **No Silent Assumptions**: Every interpretation requires user confirmation
 
@@ -95,9 +95,9 @@ citation_style: AMA
 │
 ▼
 [3. Literature Review]
-│   - Process user PDFs
-│   - Web search (PubMed)
-│   - Reference chaining
+│   - Process user PDFs (via isolated subagents)
+│   - Generate condensed notes
+│   - Synthesize findings
 │   - Draft Introduction
 │
 ▼
@@ -138,8 +138,7 @@ The plugin generates:
 ```
 project/
 ├── notes/
-│   ├── papers/*.md           # Literature notes
-│   ├── search/*.md           # Web search results
+│   ├── papers/*.md           # Literature notes (from user PDFs)
 │   ├── papers-library/*.pdf  # Central PDF storage
 │   ├── bibliography.md       # Master reference list
 │   ├── irb-summary.md        # IRB extraction
