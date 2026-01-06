@@ -110,13 +110,9 @@ The skill generates intermediate notes and drafts:
 ```
 project/
 ├── notes/
-│   ├── papers/              # User-provided PDFs (Source 1)
+│   ├── papers/              # Condensed notes per PDF (via subagent)
 │   │   ├── smith-2023.md
 │   │   └── jones-2022.md
-│   ├── search/              # Web search results (Source 2)
-│   │   └── pubmed-search-001.md
-│   ├── references/          # Reference-chained papers (Source 3)
-│   │   └── foundational-paper.md
 │   ├── papers-library/      # ALL PDFs stored centrally
 │   │   ├── smith-2023.pdf
 │   │   └── jones-2022.pdf
@@ -159,9 +155,9 @@ project/
 │
 ▼
 [3. Literature Review] ─── skills/literature-review/SKILL.md
-│   - Source 1: Process user PDFs → notes/papers/*.md
-│   - Source 2: Web search (PubMed) → notes/search/*.md
-│   - Source 3: Reference chaining → notes/references/*.md
+│   - ★ SUBAGENT PER PAPER → Prevents context overflow
+│   - Process each PDF via isolated subagent → notes/papers/*.md
+│   - Synthesize from condensed notes → notes/literature-synthesis.md
 │   - Draft Introduction → drafts/introduction.md
 │
 ▼
