@@ -54,20 +54,16 @@ Start with `notes/literature-synthesis.md` - this document already contains:
 
 This synthesis is the primary guide for drafting the Discussion.
 
-### CRITICAL: Check Paper Citation Tracker
+### Review Paper Citation Tracker
 
-**Before drafting Discussion**, review the Paper Citation Tracker table:
+Check the Paper Citation Tracker table to see which papers have natural fits planned. Use these as your citation guide.
 
-1. **Count papers with "⚠️ Review Needed" status** — these MUST be actively considered
-2. **For each paper needing review**, read the note file and find a place to cite it:
-   - Can it support a claim in Comparison with Literature?
-   - Does it provide mechanistic insight?
-   - Does it contextualize practical implications?
-   - Does it address a limitation?
-   - Can it suggest future directions?
-3. **If truly irrelevant**: Mark as "Excluded" with documented justification
+**Important**: Only cite papers where they contribute meaningfully. Do not:
+- Add sentences solely to include a citation
+- Force parenthetical references that interrupt flow
+- Stretch to make a paper seem relevant when it isn't
 
-**The user provided these papers for a reason. Do not ignore them.**
+Papers marked "Not Applicable" in the tracker should remain uncited. A focused manuscript with relevant citations is better than a cluttered one that forces every paper.
 
 ### Read All Notes
 
@@ -298,84 +294,48 @@ Title guidelines:
 - Informative > clever
 - Include key method and finding if possible
 
-## Step 6: Validate Paper Citation Coverage
+## Step 6: Document Paper Usage
 
-**CRITICAL STEP**: Before completing, verify all papers were considered.
+Record which papers were cited and which were not.
 
-### Generate Citation Coverage Report
+### Update Citation Summary
 
 Update `notes/literature-synthesis.md` with final citation status:
 
 ```markdown
-## Final Citation Coverage Report
+## Citation Summary
 
 **Generated**: [timestamp]
 **Total Papers Provided**: [n]
 **Papers Cited**: [n]
-**Papers Excluded**: [n]
+**Papers Not Used**: [n]
 
-### Citation Summary
+### Cited Papers
 
-| # | Citation | Cited In | Location |
-|---|----------|----------|----------|
-| 1 | Smith et al., 2023 | Introduction | Para 1, claim about X |
-| 2 | Jones et al., 2022 | Discussion | Comparison section |
-| 3 | Wilson et al., 2021 | Discussion | Mechanism section |
-| 4 | Brown et al., 2020 | Discussion | Future directions |
+| # | Citation | Section | Purpose |
+|---|----------|---------|---------|
+| 1 | Smith et al., 2023 | Introduction | Establishes prevalence |
+| 2 | Jones et al., 2022 | Discussion | Comparable methodology |
 
-### Excluded Papers (Requires Justification)
+### Papers Not Used
 
-| Paper | Reason for Exclusion |
-|-------|---------------------|
-| [citation] | [specific reason: e.g., "Study population too different", "Methodology not comparable"] |
-
-**Coverage Rate**: [cited/total]%
+| Paper | Reason |
+|-------|--------|
+| Brown et al., 2020 | Different population; not directly comparable |
+| Lee et al., 2019 | Tangential to our research question |
 ```
 
-### Coverage Threshold
-
-- **Target**: ≥80% of user-provided papers should be cited
-- **If below 80%**: Review excluded papers again — can any be cited for:
-  - General background context?
-  - Methodological precedent?
-  - Future research suggestions?
-- **Justification required**: Every excluded paper needs a documented reason
-
-### Present Coverage to User
-
-Before proceeding, inform the user:
-
-```
-## Citation Coverage Summary
-
-I've drafted the Discussion and Abstract. Here's the paper usage:
-
-- **Papers provided**: [n]
-- **Papers cited**: [n] ([%])
-- **Papers excluded**: [n]
-
-### Excluded Papers
-[For each excluded paper, explain why]
-
-Would you like me to:
-1. Proceed to academic review
-2. Find places to cite more papers
-3. Review exclusion decisions
-```
+**Note**: Not using a paper is acceptable when it doesn't naturally fit. The goal is manuscript quality, not citation count.
 
 ## Output
 
 Save to:
 - `drafts/discussion.md` - Discussion section
 - `drafts/abstract.md` - Structured abstract with title options
-- `notes/literature-synthesis.md` - Updated with Final Citation Coverage Report
+- `notes/literature-synthesis.md` - Updated with Citation Summary
 
 Return to parent skill with summary:
 - Discussion word count: [n]
 - Abstract word count: [n]
-- Literature sources cited in Discussion: [n]
-- **Papers provided**: [n]
-- **Papers cited**: [n]
-- **Papers excluded**: [n] (with reasons)
-- **Coverage rate**: [n]%
+- Papers cited: [n] of [n] provided
 - Title options: [n]
