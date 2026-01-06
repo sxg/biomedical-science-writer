@@ -107,25 +107,50 @@ Each paper is processed by an isolated subagent to prevent context overflow:
 
 ## Step 1: Read Scope Context
 
-From `scope.md`, extract:
+From `scope.md`, extract comprehensive context to pass to each subagent:
 - Research question (frames how to evaluate relevance)
 - Key findings (what results need literature context)
 - Target journal (determines citation depth)
+- Hypothesis (what the manuscript argues)
+- Population/methods (for identifying comparable studies)
 
-Create a brief scope summary to pass to each subagent:
+Create a detailed scope summary to pass to each subagent:
 
 ```markdown
-## Scope Context for Paper Processing
+## Manuscript Context
 
-**Research Question**: [question]
-**Key Findings**: [1-2 sentence summary]
-**Focus Areas**: [what to look for in literature]
+You are helping write a biomedical research manuscript. Your job is to read ONE paper and extract information most relevant to this manuscript.
+
+### Our Research Question
+[Full research question from scope.md]
+
+### Our Hypothesis
+[What we expect to find / are arguing]
+
+### Our Key Findings
+[Summary of main results - what we found]
+
+### Our Methods
+[Brief description of study design, population, techniques used]
+
+### Target Journal
+[Journal name] - [word limit] words - [citation style]
+
+### What to Look For in This Paper
+
+As you read, focus on extracting:
+1. **Background claims** we can cite to establish the problem's importance
+2. **Methodological precedents** that justify our approach
+3. **Comparable results** we can compare our findings against
+4. **Contradictory findings** we need to address in Discussion
+5. **Gaps identified** that our study fills
+6. **Quotable statements** that frame the field well
 ```
 
-If `notes/irb-summary.md` exists, also note:
-- Study objectives
-- Target population
-- Key procedures
+If `notes/irb-summary.md` exists, also include:
+- Study objectives from IRB
+- Target population details
+- Approved procedures
 
 ---
 
@@ -177,54 +202,87 @@ Task(
   prompt: """
   ⛔ YOU ARE PROCESSING EXACTLY ONE PAPER. DO NOT READ ANY OTHER PDFs. ⛔
 
-  **Your ONE paper**: papers/{filename}.pdf
+  ## Your Role
+
+  You are a research assistant helping write a biomedical manuscript. Your job is to:
+  1. Read ONE paper
+  2. Extract information most relevant to our manuscript
+  3. Write condensed notes highlighting what's useful for our paper
+  4. Exit immediately after
+
+  ## Your ONE Paper
+
+  **PDF to read**: papers/{filename}.pdf
   **Output file**: notes/papers/{filename}.md
 
-  **Scope Context**:
+  ## Manuscript Context (What We're Writing)
+
   {scope_summary}
 
-  **Instructions**:
-  1. Read ONLY the PDF file specified above (papers/{filename}.pdf)
-  2. Extract citation metadata, key findings, methods, results
-  3. Assess relevance to our research question
-  4. Write condensed notes to the output file
-  5. Return a one-line summary
-  6. EXIT - Do not process any other papers
+  ## Instructions
 
-  **Note Template**:
+  1. Read ONLY the PDF file specified above
+  2. Extract citation metadata (authors, title, journal, DOI, PMID)
+  3. Summarize the paper's main contribution
+  4. **Focus on relevance**: What from this paper helps our manuscript?
+     - Background claims we can cite?
+     - Methods similar to ours?
+     - Results we can compare against?
+     - Contradictions we need to address?
+     - Quotes that frame the problem well?
+  5. Write condensed notes to the output file
+  6. Return a one-line summary
+  7. EXIT - Do not process any other papers
+
+  ## Note Template
 
   # [First Author] et al., [Year]
 
   **Processed**: [timestamp]
 
   ## Citation
-  - **Authors**: [list]
+  - **Authors**: [full author list]
   - **Title**: [title]
   - **Journal**: [journal]
   - **Year**: [year]
   - **DOI**: [doi or "not found"]
   - **PMID**: [pmid or "not found"]
 
-  ## Summary
-  [2-3 sentences on main contribution]
+  ## Paper Summary
+  [2-3 sentences on what this paper is about]
 
   ## Study Design
-  - **Type**: [design]
-  - **Population**: [N, characteristics]
+  - **Type**: [RCT, cohort, retrospective, etc.]
+  - **Population**: [N, key characteristics]
+  - **Methods**: [key techniques used]
 
-  ## Key Results
+  ## Key Findings
   | Finding | Statistic | Interpretation |
   |---------|-----------|----------------|
-  | [finding] | [stat] | [meaning] |
+  | [finding] | [p-value, CI, effect size] | [what it means] |
 
-  ## Relevance to Our Study
-  **Relationship**: [Supports / Contradicts / Context / Methods]
-  [2-3 sentences on how this relates to our research]
+  ## Relevance to Our Manuscript
 
-  ## Use In Manuscript
-  - [ ] Introduction - context
-  - [ ] Methods - justification
-  - [ ] Discussion - comparison
+  **Relationship**: [Supports / Contradicts / Provides Context / Methodological Reference]
+
+  ### For Introduction
+  - [Claims or context we can cite to frame our problem]
+  - [Gaps this paper identifies that we address]
+
+  ### For Methods
+  - [Methodological precedents that justify our approach]
+
+  ### For Discussion
+  - [Results to compare against ours]
+  - [Contradictions we need to explain]
+
+  ## Key Quotes
+  > "[Quotable statement that frames the field or problem well]" (p. X)
+
+  > "[Another useful quote if available]" (p. X)
+
+  ## Tags
+  #[topic1] #[topic2] #[methodology]
   """
 )
 ```
