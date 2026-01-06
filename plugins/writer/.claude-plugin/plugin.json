@@ -1,0 +1,24 @@
+{
+  "name": "writer",
+  "version": "3.0.0",
+  "description": "Draft biomedical research manuscripts from organized project folders with papers, data, figures, and GitHub code repositories. Orchestrates an 8-step workflow with specialist agents: biostatistician for statistical accuracy, academic reviewer for publication readiness.",
+  "author": {
+    "name": "sxg"
+  },
+  "repository": "https://github.com/sxg/biomedical-science-writer",
+  "homepage": "https://github.com/sxg/biomedical-science-writer#readme",
+  "license": "MIT",
+  "keywords": [
+    "biomedical",
+    "manuscript",
+    "scientific-writing",
+    "research",
+    "academic",
+    "peer-review",
+    "IRB",
+    "literature-review"
+  ],
+  "skills": "./skills/",
+  "agents": "./agents/",
+  "commands": "./commands/"
+}

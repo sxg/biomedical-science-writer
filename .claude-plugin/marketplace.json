@@ -1,17 +1,23 @@
 {
-  "name": "biomedical-science-writer",
+  "name": "science",
   "owner": {
-    "name": "Satyam"
+    "name": "sxg"
+  },
+  "metadata": {
+    "description": "Claude Code plugins for scientific research and writing",
+    "version": "1.0.0",
+    "pluginRoot": "./plugins"
   },
   "plugins": [
     {
-      "name": "biomedical-science-writer",
-      "source": "./",
+      "name": "writer",
+      "source": "writer",
       "description": "Draft biomedical research manuscripts from organized project folders with papers, data, figures, and GitHub code repositories. Orchestrates an 8-step workflow with specialist agents: biostatistician for statistical accuracy, academic reviewer for publication readiness.",
-      "version": "2.3.0",
+      "version": "3.0.0",
       "author": {
-        "name": "Satyam"
+        "name": "sxg"
       },
+      "repository": "https://github.com/sxg/biomedical-science-writer",
       "license": "MIT",
       "keywords": [
         "biomedical",
@@ -19,8 +25,11 @@
         "scientific-writing",
         "research",
         "academic",
-        "peer-review"
-      ]
+        "peer-review",
+        "IRB",
+        "literature-review"
+      ],
+      "category": "research"
     }
   ]
 }
