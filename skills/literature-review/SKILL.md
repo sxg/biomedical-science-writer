@@ -7,6 +7,35 @@ description: Process user-provided PDFs using isolated subagents, generate struc
 
 Processes user-provided PDFs one at a time using isolated subagents to prevent context overflow, then synthesizes findings and drafts the Introduction section.
 
+## CRITICAL CONSTRAINTS
+
+```
+┌────────────────────────────────────────────────────────────────────┐
+│  ⛔ ORCHESTRATOR MUST NEVER READ PDF FILES DIRECTLY ⛔             │
+│                                                                    │
+│  The orchestrator (you, running this skill) may ONLY read:         │
+│  - scope.md                                                        │
+│  - inventory.md                                                    │
+│  - notes/irb-summary.md                                            │
+│  - notes/papers/*.md (the condensed notes, NOT PDFs)               │
+│  - notes/bibliography.md                                           │
+│  - notes/literature-synthesis.md                                   │
+│                                                                    │
+│  If you find yourself about to use the Read tool on a .pdf file,   │
+│  STOP. Spawn a subagent instead.                                   │
+├────────────────────────────────────────────────────────────────────┤
+│  ⛔ EACH SUBAGENT PROCESSES EXACTLY ONE PAPER ⛔                   │
+│                                                                    │
+│  - One Task tool call = One PDF                                    │
+│  - Never pass multiple PDFs to a single subagent                   │
+│  - Never ask a subagent to "process the remaining papers"          │
+│  - Wait for each subagent to complete before spawning the next     │
+│                                                                    │
+│  WRONG: Task("Process papers/a.pdf, papers/b.pdf, papers/c.pdf")   │
+│  RIGHT: Task("Process papers/a.pdf") → wait → Task("Process b.pdf")│
+└────────────────────────────────────────────────────────────────────┘
+```
+
 ## Architecture: Subagent Pattern
 
 Each paper is processed by an isolated subagent to prevent context overflow:
@@ -138,26 +167,29 @@ For each PDF in the queue:
 
 ### 3a. Spawn Subagent
 
-Use the Task tool to spawn an isolated subagent:
+Use the Task tool to spawn an isolated subagent.
+
+**IMPORTANT**: Each Task call must specify exactly ONE PDF file. Do not batch.
 
 ```
 Task(
   subagent_type: "general-purpose",
   prompt: """
-  Process this single PDF and generate condensed notes.
+  ⛔ YOU ARE PROCESSING EXACTLY ONE PAPER. DO NOT READ ANY OTHER PDFs. ⛔
 
-  **Paper**: papers/{filename}.pdf
-  **Output**: notes/papers/{filename}.md
+  **Your ONE paper**: papers/{filename}.pdf
+  **Output file**: notes/papers/{filename}.md
 
   **Scope Context**:
   {scope_summary}
 
   **Instructions**:
-  1. Read the PDF file
+  1. Read ONLY the PDF file specified above (papers/{filename}.pdf)
   2. Extract citation metadata, key findings, methods, results
   3. Assess relevance to our research question
-  4. Write condensed notes following the template below
+  4. Write condensed notes to the output file
   5. Return a one-line summary
+  6. EXIT - Do not process any other papers
 
   **Note Template**:
 
