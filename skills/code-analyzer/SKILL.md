@@ -99,7 +99,7 @@ Log clarifications in `notes/code-analysis.md`:
      │
      ▼
 [BIOSTATISTICIAN REVIEW] ─── Validate statistical methods
-     │                        └── skills/biostatistician/SKILL.md
+     │                        └── agents/biostatistician.md
      ▼
 [Draft Methods] ─── drafts/methods.md (with statistical sign-off)
 ```
@@ -387,7 +387,7 @@ or is one the primary and one exploratory?
 
 **Before drafting Methods, invoke the biostatistician agent for statistical review.**
 
-Read `skills/biostatistician/SKILL.md` and execute Phase 1 (Code Analysis Review):
+Read `agents/biostatistician.md` and execute Phase 1 (Code Analysis Review):
 
 1. **Create statistical methods inventory** from code analysis
 2. **Check assumptions** for each test identified

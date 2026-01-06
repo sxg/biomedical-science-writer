@@ -29,7 +29,7 @@ This skill employs specialist agents for domain expertise:
 
 ### Biostatistician Agent
 
-The biostatistician (`skills/biostatistician/SKILL.md`) ensures:
+The biostatistician (`agents/biostatistician.md`) ensures:
 - Appropriate statistical test selection
 - Assumption checking and validation
 - Correct statistical reporting format
@@ -40,7 +40,7 @@ The biostatistician (`skills/biostatistician/SKILL.md`) ensures:
 
 ### Academic Reviewer Agent
 
-The academic reviewer (`skills/academic-reviewer/SKILL.md`) acts as a skeptical peer reviewer:
+The academic reviewer (`agents/academic-reviewer.md`) acts as a skeptical peer reviewer:
 - Verifies every claim is supported by its cited reference
 - Validates the hypothesis is clinically meaningful and testable
 - Confirms methods actually test the stated hypothesis
@@ -183,7 +183,7 @@ project/
 │   - Draft Abstract → drafts/abstract.md
 │
 ▼
-[7. Academic Review] ─── skills/academic-reviewer/SKILL.md
+[7. Academic Review] ─── agents/academic-reviewer.md
 │   - Verify claims against citations
 │   - Validate hypothesis and methods alignment
 │   - ★ INDEPENDENTLY interpret results

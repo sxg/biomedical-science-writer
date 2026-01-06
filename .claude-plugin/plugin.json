@@ -19,5 +19,6 @@
     "literature-review"
   ],
   "skills": "./skills/",
+  "agents": "./agents/",
   "commands": "./commands/"
 }

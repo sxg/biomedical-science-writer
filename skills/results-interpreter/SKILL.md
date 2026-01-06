@@ -118,7 +118,7 @@ If the user confirms an interpretation, document it in `notes/data-analysis.md`:
      │
      ▼
 [BIOSTATISTICIAN REVIEW] ─── Validate statistical reporting
-     │                        └── skills/biostatistician/SKILL.md
+     │                        └── agents/biostatistician.md
      ▼
 [Draft Results] ─── drafts/results.md (with statistical sign-off)
 ```
@@ -541,7 +541,7 @@ Create `notes/data-analysis.md`:
 
 **Before drafting Results, invoke the biostatistician agent for statistical review.**
 
-Read `skills/biostatistician/SKILL.md` and execute Phase 3 (Results Section Review):
+Read `agents/biostatistician.md` and execute Phase 3 (Results Section Review):
 
 1. **Verify statistical reporting** — Check all statistics are formatted correctly
 2. **Validate p-values** — Ensure proper formatting (p = 0.043, not p = .043)
