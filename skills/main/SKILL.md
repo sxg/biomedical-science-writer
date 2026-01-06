@@ -69,8 +69,20 @@ project/
 │   ├── figure1.png
 │   ├── figure2.png
 │   └── ...
+├── irb/                 # OPTIONAL - IRB protocol documents (.pdf, .docx, .md)
+│   ├── protocol.pdf     # IRB-approved protocol
+│   └── amendments/      # Optional protocol amendments
 └── config.md            # Project configuration (see template below)
 ```
+
+### IRB Documents (Optional)
+
+If provided, IRB documents enable:
+- **Auto-populated ethics statement** in final manuscript
+- **Scope comparison checkpoint** during scoping (catches discrepancies early)
+- **Cross-reference validation** in Methods and Results (ensures consistency)
+
+Supported formats: PDF, Word (.docx), Markdown (.md)
 
 ### config.md Template
 
@@ -112,6 +124,8 @@ project/
 │   ├── literature-synthesis.md  # Aggregated themes and findings
 │   ├── code-analysis.md     # GitHub repo analysis
 │   ├── data-analysis.md     # Data/figures interpretation
+│   ├── irb-summary.md       # IRB document extraction (if irb/ provided)
+│   ├── irb-scope-comparison.md  # IRB vs actual scope (if irb/ provided)
 │   ├── statistical-review.md    # Biostatistician sign-off report
 │   └── reviewer-feedback.md     # Academic reviewer feedback
 ├── drafts/
@@ -132,6 +146,7 @@ project/
 │   - Scan project folder structure
 │   - Validate required folders exist
 │   - Clone/analyze GitHub repository
+│   - Extract IRB content → notes/irb-summary.md (if irb/ exists)
 │   - Generate inventory.md
 │
 ▼
@@ -139,7 +154,8 @@ project/
 │   - Ask: research question
 │   - Ask: key findings (cross-check with inventory)
 │   - Ask: constraints (word limit, journal)
-│   - Generate scope.md
+│   - ★ IRB SCOPE COMPARISON → Confirm discrepancies with user (if IRB exists)
+│   - Generate scope.md, notes/irb-scope-comparison.md
 │
 ▼
 [3. Literature Review] ─── skills/literature-review/SKILL.md
@@ -183,6 +199,7 @@ project/
 [8. Assembly] ─── skills/assembler/SKILL.md
     - Confirm reviewer approval
     - Combine all drafts
+    - Populate ethics statement from IRB (if available)
     - Apply formatting constraints
     - Generate → manuscript.md
 ```

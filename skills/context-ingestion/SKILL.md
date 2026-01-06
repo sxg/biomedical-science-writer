@@ -29,6 +29,9 @@ User provides path to project folder (or current directory if already there).
 [Inventory Materials] ─── List all available files
      │
      ▼
+[Extract IRB Content] ─── If irb/ exists, generate notes/irb-summary.md
+     │
+     ▼
 [Generate inventory.md] ─── Structured summary
 ```
 
@@ -42,6 +45,7 @@ project/
 ├── papers/       # Must exist (can be empty)
 ├── data/         # Must exist (can be empty)
 ├── figures/      # Must exist (can be empty)
+├── irb/          # Optional - IRB protocol and regulatory documents
 └── config.md     # Must exist
 ```
 
@@ -167,7 +171,82 @@ Identify:
 - Key script files
 - Requirements/dependencies file
 
-## Step 5: Generate inventory.md
+### IRB Inventory (Optional)
+
+If `irb/` folder exists, scan for regulatory documents:
+
+```bash
+ls -la irb/*.pdf irb/*.docx irb/*.md 2>/dev/null
+```
+
+Supported formats:
+- `.md` - Read directly with Read tool
+- `.pdf` - Read with Claude's native PDF capability
+- `.docx` - Extract text using `document-skills:docx` skill
+
+## Step 5: Extract IRB Content
+
+**Skip this step if `irb/` folder does not exist or is empty.**
+
+For each document in `irb/`:
+
+1. Read the document content using appropriate method for format
+2. Extract comprehensive study information
+3. Generate `notes/irb-summary.md`
+
+### IRB Summary Template
+
+Create `notes/irb-summary.md`:
+
+```markdown
+# IRB Document Summary
+
+**Source**: [filename]
+**Extracted**: [timestamp]
+
+## Study Identification
+- **Protocol Title**: [extracted or "[not found]"]
+- **IRB Approval Number**: [extracted or "[not found]"]
+- **Principal Investigator**: [extracted or "[not found]"]
+- **Approval Date**: [extracted or "[not found]"]
+
+## Study Design
+- **Study Type**: [interventional/observational/retrospective/etc.]
+- **Design**: [RCT, cohort, case-control, cross-sectional, etc.]
+- **Duration**: [study period]
+
+## Population
+- **Target Population**: [description]
+- **Inclusion Criteria**:
+  - [criterion 1]
+  - [criterion 2]
+  - ...
+- **Exclusion Criteria**:
+  - [criterion 1]
+  - [criterion 2]
+  - ...
+- **Sample Size**: [N with justification if provided]
+
+## Procedures & Interventions
+- [Procedure 1]
+- [Procedure 2]
+- ...
+
+## Endpoints
+- **Primary**: [endpoint]
+- **Secondary**: [endpoints]
+
+## Statistical Considerations
+- **Power Analysis**: [if provided or "[not found]"]
+- **Planned Analyses**: [if provided or "[not found]"]
+
+## Notes
+[Any additional relevant context, caveats, or sections that were unclear]
+```
+
+Mark fields as `[not found]` if not present in the document.
+
+## Step 6: Generate inventory.md
 
 Create structured inventory document:
 
@@ -215,6 +294,14 @@ Project: [folder name]
   - `models.py` - ML models
 - **Dependencies**: pandas, scikit-learn, matplotlib, ...
 
+## IRB Documents
+
+| Filename | Format | Status |
+|----------|--------|--------|
+| protocol.pdf | PDF | ✓ Extracted to notes/irb-summary.md |
+
+*Or: "No IRB documents provided"*
+
 ## Summary
 
 | Category | Count | Status |
@@ -223,6 +310,7 @@ Project: [folder name]
 | Data files | [n] | ✓ Ready |
 | Figures | [n] | ✓ Ready |
 | Code repo | 1 | ✓ Cloned |
+| IRB documents | [n] | ✓ Extracted / Not provided |
 
 ## Missing/Warnings
 

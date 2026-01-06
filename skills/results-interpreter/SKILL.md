@@ -82,13 +82,15 @@ If the user confirms an interpretation, document it in `notes/data-analysis.md`:
 
 - `scope.md` must exist
 - `notes/code-analysis.md` should exist (provides context on what analyses were run)
+- `notes/irb-summary.md` may exist (provides expected sample size, endpoints for validation)
+- `notes/irb-scope-comparison.md` may exist (explains any scope differences)
 - `data/` folder with CSV/Excel files
 - `figures/` folder with PNG/JPG images
 
 ## Workflow
 
 ```
-[Read scope.md and code-analysis.md]
+[Read scope.md, code-analysis.md, and notes/irb-summary.md]
      │
      ▼
 [Inventory Data Files] ─── List all CSVs and columns
@@ -96,6 +98,9 @@ If the user confirms an interpretation, document it in `notes/data-analysis.md`:
      ▼
 [CHECKPOINT: Ask Clarifying Questions] ─── STOP if any ambiguity
      │                                       └── Document responses
+     ▼
+[Validate Against IRB] ─── Check sample size, endpoints match expectations
+     │
      ▼
 [Analyze Data Files] ─── Parse CSVs, extract statistics
      │
@@ -241,9 +246,64 @@ After receiving answers, record them:
 
 ---
 
+## Step 3b: Validate Against IRB (If IRB Exists)
+
+**Skip this step if `notes/irb-summary.md` does not exist.**
+
+After clarifying data questions, validate that the actual results align with IRB expectations.
+
+### IRB Validation Checklist
+
+```markdown
+## IRB Results Validation
+
+**IRB Document**: [from irb-summary.md]
+**Scope Comparison**: [from irb-scope-comparison.md]
+
+### Sample Size Check
+
+| Aspect | IRB Expected | Actual Data | Status |
+|--------|--------------|-------------|--------|
+| Total N | [from IRB] | [from data] | ✓/✗ |
+| Control group | [from IRB] | [from data] | ✓/✗ |
+| Treatment group | [from IRB] | [from data] | ✓/✗ |
+
+**If actual < expected**: Reference irb-scope-comparison.md for explanation
+**If actual > expected**: Unusual - ask user for clarification
+
+### Endpoints Check
+
+| IRB Endpoint | Present in Data? | Column Name | Notes |
+|--------------|------------------|-------------|-------|
+| [primary endpoint] | ✓/✗ | [column] | |
+| [secondary endpoint 1] | ✓/✗ | [column] | |
+| [secondary endpoint 2] | ✓/✗ | [column] | |
+
+**Missing endpoints**: Check irb-scope-comparison.md - may be intentionally out of scope
+**Extra endpoints**: Exploratory analyses - note as such in Results
+```
+
+### If Significant Discrepancies
+
+If you find discrepancies NOT explained by `notes/irb-scope-comparison.md`:
+
+```
+I found a discrepancy between expected and actual data:
+
+**IRB Expected Sample Size**: N = 500
+**Actual Data**: N = 312
+
+This wasn't documented in the scope comparison.
+Could you explain this difference? (e.g., enrollment ongoing, exclusions, data subset)
+```
+
+Document all validations in `notes/data-analysis.md`.
+
+---
+
 ## Step 4: Analyze Data Files (Post-Clarification)
 
-**Only proceed after Step 3 is complete.**
+**Only proceed after Steps 3 and 3b are complete.**
 
 ### 4a. Parse Each Data File
 

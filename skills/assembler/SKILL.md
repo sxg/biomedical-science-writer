@@ -42,6 +42,7 @@ Required files:
 - `scope.md` - Constraints (word limit, journal, citation style)
 - `notes/reviewer-feedback.md` - **Academic reviewer sign-off (REQUIRED)**
 - `notes/statistical-review.md` - Biostatistician sign-off
+- `notes/irb-summary.md` - IRB document summary (optional, provides ethics statement)
 - `drafts/abstract.md` - Abstract and title options
 - `drafts/introduction.md` - Introduction section
 - `drafts/methods.md` - Methods section
@@ -205,6 +206,14 @@ Create `manuscript.md` with this structure:
 
 ---
 
+## Ethics Statement
+
+[Auto-populated from notes/irb-summary.md if available, otherwise placeholder]
+
+This study was approved by [Institution] Institutional Review Board (IRB approval number: [from irb-summary.md]). [Informed consent statement as appropriate for study type.]
+
+---
+
 ## Conflicts of Interest
 
 [Placeholder]
@@ -239,6 +248,53 @@ Create `manuscript.md` with this structure:
 
 [If applicable]
 ```
+
+## Step 2b: Populate Ethics Statement
+
+### If `notes/irb-summary.md` exists:
+
+Extract from the IRB summary:
+- **IRB Approval Number**: Use exact number from "Study Identification" section
+- **Institution Name**: If available, otherwise use "[Institution]" placeholder
+- **Approval Date**: Include if journal requires it
+
+Generate ethics statement:
+
+```markdown
+## Ethics Statement
+
+This study was approved by [Institution Name] Institutional Review Board
+(Protocol #[IRB Approval Number], approved [Approval Date]).
+[Informed consent / waiver of consent statement based on study type].
+```
+
+### Consent Statement Templates
+
+Based on study type from `notes/irb-summary.md`:
+
+**Prospective with consent:**
+> Written informed consent was obtained from all participants prior to enrollment.
+
+**Retrospective/waiver:**
+> The requirement for informed consent was waived due to the retrospective nature of this study.
+
+**Pediatric:**
+> Written informed consent was obtained from parents/guardians, and assent was obtained from participants aged [X-Y] years.
+
+### If `notes/irb-summary.md` does NOT exist:
+
+Leave placeholder for user to complete:
+
+```markdown
+## Ethics Statement
+
+[PLACEHOLDER - Please provide:]
+- IRB approval number: ___
+- Institution name: ___
+- Consent statement: ___
+```
+
+Notify user: "No IRB document was provided. Please complete the Ethics Statement section with your IRB approval information."
 
 ## Step 3: Apply Word Limit
 

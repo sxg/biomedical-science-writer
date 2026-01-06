@@ -80,6 +80,8 @@ Every paper note MUST include:
 ## Prerequisites
 
 - `scope.md` must exist (from scoping step)
+- `notes/irb-summary.md` may exist (provides study objectives and population context)
+- `notes/irb-scope-comparison.md` may exist (clarifies scope differences)
 - `papers/` folder (may be empty if user has no PDFs yet)
 - Create directories: `notes/papers/`, `notes/search/`, `notes/references/`, `notes/papers-library/`
 
@@ -115,13 +117,23 @@ Every paper note MUST include:
 
 ---
 
-## Step 1: Read Scope Context
+## Step 1: Read Scope and IRB Context
 
 From `scope.md`, extract:
 - Research question (frames what literature is relevant)
 - Key findings (need literature context for comparison)
 - Target journal (determines citation depth)
 - Specific papers user mentioned wanting to cite
+
+If `notes/irb-summary.md` exists, also extract:
+- **Study objectives** - Use to frame Introduction paragraph 4 (study purpose)
+- **Target population** - Guides search for comparable studies
+- **Procedures and endpoints** - Identifies methodological literature to find
+- **Sample size justification** - May reference prior studies to cite
+
+If `notes/irb-scope-comparison.md` exists:
+- Note any scope differences - manuscript should reflect actual scope, not full IRB scope
+- Use IRB objectives for framing, but findings should match actual research
 
 ---
 

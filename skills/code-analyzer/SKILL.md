@@ -66,13 +66,15 @@ Log clarifications in `notes/code-analysis.md`:
 ## Prerequisites
 
 - `scope.md` must exist
+- `notes/irb-summary.md` may exist (provides approved procedures and endpoints for cross-reference)
+- `notes/irb-scope-comparison.md` may exist (clarifies what was actually implemented vs. approved)
 - `code/` directory with cloned repository (from context-ingestion)
 - If code/ doesn't exist, this step produces limited output based on scope.md alone
 
 ## Workflow
 
 ```
-[Read scope.md for context]
+[Read scope.md and notes/irb-summary.md for context]
      │
      ▼
 [Scan Repository Structure]
@@ -88,6 +90,9 @@ Log clarifications in `notes/code-analysis.md`:
      │
      ▼
 [CHECKPOINT: Verify Methodology] ─── Confirm interpretation with user
+     │
+     ▼
+[IRB CROSS-REFERENCE] ─── Compare code procedures vs. IRB-approved procedures
      │
      ▼
 [Extract Methodology] ─── Generate notes/code-analysis.md
@@ -328,6 +333,54 @@ code/
 - [Key methodological detail 1]
 - [Key methodological detail 2]
 - [Any unusual or noteworthy approaches]
+```
+
+## Step 4b: IRB Cross-Reference (If IRB Exists)
+
+**Skip this step if `notes/irb-summary.md` does not exist.**
+
+Compare the procedures identified in code with the IRB-approved procedures to ensure consistency and identify any discrepancies.
+
+### Cross-Reference Table
+
+Create a comparison in `notes/code-analysis.md`:
+
+```markdown
+## IRB Procedure Cross-Reference
+
+| IRB-Approved Procedure | Implemented in Code? | Code Location | Notes |
+|------------------------|---------------------|---------------|-------|
+| [procedure from IRB] | ✓/✗ | analysis.ipynb | [matches/differs] |
+| [procedure from IRB] | ✓/✗ | [file] | [notes] |
+
+| Code Procedure | In IRB? | Notes |
+|----------------|---------|-------|
+| [procedure from code] | ✓/✗ | [expected/unexpected] |
+```
+
+### What to Check
+
+1. **Endpoints match**: Are the outcomes analyzed in code the same as IRB endpoints?
+2. **Population criteria**: Does data filtering match IRB inclusion/exclusion?
+3. **Statistical methods**: Are the planned analyses from IRB reflected in code?
+4. **Sample size**: Does actual N align with IRB-justified sample size?
+
+### If Discrepancies Found
+
+Reference `notes/irb-scope-comparison.md` to understand if differences were already documented during scoping. If not:
+
+1. **Document the discrepancy** in code-analysis.md
+2. **Ask user for clarification** before proceeding
+3. **Note implications** for Methods section wording
+
+```
+I found a discrepancy between the IRB and implemented code:
+
+**IRB**: Primary endpoint is change in HbA1c at 6 months
+**Code**: Analyzes HbA1c at 3 months and 6 months
+
+Was this intentional? Should the Methods describe both timepoints,
+or is one the primary and one exploratory?
 ```
 
 ## Step 5: Biostatistician Review
