@@ -1,20 +1,20 @@
 # Writer
 
-A Claude Code plugin that drafts biomedical research manuscripts from organized project folders. Orchestrates an 8-step workflow with specialist agents for statistical accuracy and publication readiness.
+A Claude Code plugin that drafts scientific research manuscripts from organized project folders. Orchestrates an 8-step workflow with specialist agents for statistical accuracy and publication readiness.
 
 ## Installation
 
 ```bash
-/plugin marketplace add sxg/biomedical-science-writer
+/plugin marketplace add sxg/science
 /plugin install writer@science
 ```
 
 ## Features
 
 - **8-Step Workflow**: Context ingestion → Scoping → Literature review → Code analysis → Results interpretation → Synthesis → Academic review → Assembly
-- **Specialist Agents**: Biostatistician for statistical validation, Academic reviewer for publication readiness
+- **Specialist Agents**: Statistical reviewer for quantitative validation, Academic reviewer for publication readiness
 - **Subagent-Based Literature Review**: Process user-provided PDFs via isolated subagents (prevents context overflow)
-- **IRB Document Support**: Auto-extract ethics statements, scope comparison checkpoints
+- **Ethics Document Support**: Auto-extract ethics statements, scope comparison checkpoints
 - **No Silent Assumptions**: Every interpretation requires user confirmation
 
 ## Project Structure
@@ -32,7 +32,7 @@ project/
 ├── figures/             # Generated figures (PNG, JPG, SVG)
 │   ├── figure1.png
 │   └── figure2.png
-├── irb/                 # OPTIONAL - IRB protocol documents
+├── ethics/              # OPTIONAL - Ethics/governance documents
 │   └── protocol.pdf
 └── config.md            # Project configuration
 ```
@@ -49,7 +49,7 @@ access: private
 
 ## Constraints
 word_limit: 3500
-target_journal: Radiology: Artificial Intelligence
+target_journal: [Target Journal]
 citation_style: AMA
 
 ## Additional Notes
@@ -74,13 +74,13 @@ citation_style: AMA
 [1. Context Ingestion]
 │   - Scan project folder
 │   - Clone GitHub repository
-│   - Extract IRB content (if provided)
+│   - Extract ethics content (if provided)
 │
 ▼
 [2. Scoping]
 │   - Define research question
 │   - Confirm key findings
-│   - IRB scope comparison checkpoint
+│   - Ethics scope comparison checkpoint
 │
 ▼
 [3. Literature Review]
@@ -92,14 +92,14 @@ citation_style: AMA
 ▼
 [4. Code Analysis]
 │   - Analyze GitHub repository
-│   - ★ Biostatistician review
+│   - ★ Statistical review
 │   - Draft Methods
 │
 ▼
 [5. Results Interpretation]
 │   - Analyze CSV data
 │   - Interpret figures
-│   - ★ Biostatistician review
+│   - ★ Statistical review
 │   - Draft Results
 │
 ▼
@@ -130,8 +130,8 @@ project/
 │   ├── papers/*.md           # Literature notes (from user PDFs)
 │   ├── papers-library/*.pdf  # Central PDF storage
 │   ├── bibliography.md       # Master reference list
-│   ├── irb-summary.md        # IRB extraction
-│   ├── irb-scope-comparison.md
+│   ├── ethics-summary.md        # Ethics document extraction
+│   ├── ethics-scope-comparison.md
 │   ├── statistical-review.md
 │   └── reviewer-feedback.md
 ├── drafts/
@@ -145,12 +145,12 @@ project/
 └── manuscript.md             # Final output
 ```
 
-## IRB Document Support
+## Ethics Document Support
 
-Place IRB documents in the `irb/` folder (PDF, Word, or Markdown). The plugin will:
+Place ethics/governance documents in the `ethics/` folder (PDF, Word, or Markdown). Supports IRB protocols, IACUC approvals, ethics committee decisions, and data governance agreements. The plugin will:
 
-1. **Extract comprehensive study information** → `notes/irb-summary.md`
-2. **Compare IRB scope vs actual scope** during scoping step
+1. **Extract comprehensive study information** → `notes/ethics-summary.md`
+2. **Compare ethics scope vs actual scope** during scoping step
 3. **Cross-reference procedures** in Methods and Results
 4. **Auto-populate ethics statement** in final manuscript
 

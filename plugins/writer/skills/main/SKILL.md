@@ -1,9 +1,9 @@
 ---
 name: writer
-description: Draft biomedical research manuscripts from research data. Use when user wants to write a research paper, has a project folder with papers, data, figures, and a GitHub repository link. Orchestrates context-ingestion, scoping, literature-review, code-analyzer, results-interpreter, synthesis, and assembler sub-skills.
+description: Draft scientific research manuscripts from research data. Use when user wants to write a research paper, has a project folder with papers, data, figures, and a GitHub repository link. Orchestrates context-ingestion, scoping, literature-review, code-analyzer, results-interpreter, synthesis, and assembler sub-skills.
 ---
 
-# Biomedical Science Writer
+# Scientific Manuscript Writer
 
 Orchestrates the creation of scientific manuscript drafts through a structured, note-generating workflow.
 
@@ -24,25 +24,25 @@ This skill employs specialist agents for domain expertise:
 
 | Agent | Role | Invoked During |
 |-------|------|----------------|
-| **Biostatistician** | Statistical accuracy review | Methods, Results |
+| **Statistical Reviewer** | Statistical accuracy review | Methods, Results |
 | **Academic Reviewer** | Publication readiness review | Before Assembly |
 
-### Biostatistician Agent
+### Statistical Reviewer Agent
 
-The biostatistician (`agents/biostatistician.md`) ensures:
+The statistical reviewer (`agents/statistical-reviewer.md`) ensures:
 - Appropriate statistical test selection
 - Assumption checking and validation
 - Correct statistical reporting format
 - Effect sizes with confidence intervals
 - Multiple comparison handling
 
-**No statistical claims are published without biostatistician sign-off.**
+**No statistical claims are published without statistical reviewer sign-off.**
 
 ### Academic Reviewer Agent
 
 The academic reviewer (`agents/academic-reviewer.md`) acts as a skeptical peer reviewer:
 - Verifies every claim is supported by its cited reference
-- Validates the hypothesis is clinically meaningful and testable
+- Validates the hypothesis is scientifically meaningful and testable
 - Confirms methods actually test the stated hypothesis
 - **Independently interprets results** before reading Discussion
 - Identifies discrepancies between evidence and author conclusions
@@ -69,18 +69,20 @@ project/
 │   ├── figure1.png
 │   ├── figure2.png
 │   └── ...
-├── irb/                 # OPTIONAL - IRB protocol documents (.pdf, .docx, .md)
-│   ├── protocol.pdf     # IRB-approved protocol
+├── ethics/              # OPTIONAL - Ethics/governance documents (.pdf, .docx, .md)
+│   ├── protocol.pdf     # Approved protocol (IRB, IACUC, ethics committee, etc.)
 │   └── amendments/      # Optional protocol amendments
 └── config.md            # Project configuration (see template below)
 ```
 
-### IRB Documents (Optional)
+### Ethics Documents (Optional)
 
-If provided, IRB documents enable:
+If provided, ethics/governance documents enable:
 - **Auto-populated ethics statement** in final manuscript
 - **Scope comparison checkpoint** during scoping (catches discrepancies early)
 - **Cross-reference validation** in Methods and Results (ensures consistency)
+
+Supports: IRB protocols, IACUC approvals, ethics committee decisions, data governance agreements.
 
 Supported formats: PDF, Word (.docx), Markdown (.md)
 
@@ -96,7 +98,7 @@ access: private  # or public
 
 ## Constraints
 word_limit: 3500
-target_journal: Radiology: Artificial Intelligence
+target_journal: [Target Journal]
 citation_style: AMA
 
 ## Additional Notes
@@ -120,9 +122,9 @@ project/
 │   ├── literature-synthesis.md  # Aggregated themes and findings
 │   ├── code-analysis.md     # GitHub repo analysis
 │   ├── data-analysis.md     # Data/figures interpretation
-│   ├── irb-summary.md       # IRB document extraction (if irb/ provided)
-│   ├── irb-scope-comparison.md  # IRB vs actual scope (if irb/ provided)
-│   ├── statistical-review.md    # Biostatistician sign-off report
+│   ├── ethics-summary.md       # Ethics document extraction (if ethics/ provided)
+│   ├── ethics-scope-comparison.md  # Ethics vs actual scope (if ethics/ provided)
+│   ├── statistical-review.md    # Statistical reviewer sign-off report
 │   └── reviewer-feedback.md     # Academic reviewer feedback
 ├── drafts/
 │   ├── introduction.md
@@ -142,7 +144,7 @@ project/
 │   - Scan project folder structure
 │   - Validate required folders exist
 │   - Clone/analyze GitHub repository
-│   - Extract IRB content → notes/irb-summary.md (if irb/ exists)
+│   - Extract ethics content → notes/ethics-summary.md (if ethics/ exists)
 │   - Generate inventory.md
 │
 ▼
@@ -150,8 +152,8 @@ project/
 │   - Ask: research question
 │   - Ask: key findings (cross-check with inventory)
 │   - Ask: constraints (word limit, journal)
-│   - ★ IRB SCOPE COMPARISON → Confirm discrepancies with user (if IRB exists)
-│   - Generate scope.md, notes/irb-scope-comparison.md
+│   - ★ ETHICS SCOPE COMPARISON → Confirm discrepancies with user (if ethics docs exist)
+│   - Generate scope.md, notes/ethics-scope-comparison.md
 │
 ▼
 [3. Literature Review] ─── skills/literature-review/SKILL.md
@@ -164,7 +166,7 @@ project/
 [4. Code Analysis] ─── skills/code-analyzer/SKILL.md
 │   - Analyze GitHub repository
 │   - Extract methodology → notes/code-analysis.md
-│   - ★ BIOSTATISTICIAN REVIEW → Validate methods
+│   - ★ STATISTICAL REVIEW → Validate methods
 │   - Draft Methods → drafts/methods.md
 │
 ▼
@@ -172,7 +174,7 @@ project/
 │   - Analyze CSV data files
 │   - Interpret figures
 │   - Generate → notes/data-analysis.md
-│   - ★ BIOSTATISTICIAN REVIEW → Validate statistics
+│   - ★ STATISTICAL REVIEW → Validate statistics
 │   - Draft Results → drafts/results.md
 │
 ▼
@@ -195,7 +197,7 @@ project/
 [8. Assembly] ─── skills/assembler/SKILL.md
     - Confirm reviewer approval
     - Combine all drafts
-    - Populate ethics statement from IRB (if available)
+    - Populate ethics statement from ethics docs (if available)
     - Apply formatting constraints
     - Generate → manuscript.md
 ```

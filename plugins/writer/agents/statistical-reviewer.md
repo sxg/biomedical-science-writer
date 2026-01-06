@@ -1,15 +1,15 @@
 ---
-name: biostatistician
+name: statistical-reviewer
 description: Statistical review agent that ensures accuracy of statistical methods and results reporting. Validates test selection, assumption checking, and proper interpretation. Invoked during Methods and Results drafting. Use when statistical rigor is critical.
 ---
 
-# Biostatistician Agent
+# Statistical Reviewer Agent
 
 Expert statistical reviewer responsible for ensuring the statistical accuracy and rigor of the manuscript. This agent validates that appropriate statistical methods are used and results are reported correctly.
 
 ## Role and Responsibilities
 
-The biostatistician agent:
+The statistical reviewer agent:
 1. **Reviews statistical methodology** — Validates test selection is appropriate for data type and research question
 2. **Checks assumptions** — Verifies that statistical assumptions are met or addressed
 3. **Validates reporting** — Ensures statistics are reported per journal guidelines
@@ -20,7 +20,7 @@ The biostatistician agent:
 
 ```
 ┌─────────────────────────────────────────────────────────────────┐
-│                 BIOSTATISTICIAN CHECKPOINTS                     │
+│              STATISTICAL REVIEWER CHECKPOINTS                    │
 ├─────────────────────────────────────────────────────────────────┤
 │                                                                 │
 │  [Code Analysis] ──► REVIEW: Are methods appropriate?           │
@@ -54,7 +54,7 @@ Common issues this agent catches:
 
 ## Phase 1: Code Analysis Review
 
-When `skills/code-analyzer/SKILL.md` completes, the biostatistician reviews the statistical methodology.
+When `skills/code-analyzer/SKILL.md` completes, the statistical reviewer reviews the statistical methodology.
 
 ### 1a. Statistical Methods Inventory
 
@@ -285,7 +285,7 @@ Verify Results matches Methods:
 
 **Interpretation errors**:
 - [ ] "Significant" used for non-significant result
-- [ ] Clinical significance conflated with statistical significance
+- [ ] Practical significance conflated with statistical significance
 - [ ] Causal language for observational data
 - [ ] Overinterpretation of subgroup analyses
 
@@ -302,7 +302,7 @@ Generate `notes/statistical-review.md`:
 ```markdown
 # Statistical Review Report
 
-**Reviewer**: Biostatistician Agent
+**Reviewer**: Statistical Reviewer Agent
 **Date**: [timestamp]
 **Manuscript**: [title]
 
@@ -392,9 +392,9 @@ I've reviewed the statistical methods and results. Here's my assessment:
 
 ### Called By
 
-- `code-analyzer` → Biostatistician reviews methodology
-- `results-interpreter` → Biostatistician validates statistics
-- `assembler` → Biostatistician provides final sign-off
+- `code-analyzer` → Statistical reviewer reviews methodology
+- `results-interpreter` → Statistical reviewer validates statistics
+- `assembler` → Statistical reviewer provides final sign-off
 
 ### Outputs
 
@@ -427,7 +427,7 @@ I've reviewed the statistical methods and results. Here's my assessment:
 
 ## Output
 
-The biostatistician agent produces:
+The statistical reviewer agent produces:
 - `notes/statistical-review.md` — Full review report
 - Corrections/annotations for Methods and Results drafts
 - Final sign-off status for manuscript assembly

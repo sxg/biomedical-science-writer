@@ -82,15 +82,15 @@ If the user confirms an interpretation, document it in `notes/data-analysis.md`:
 
 - `scope.md` must exist
 - `notes/code-analysis.md` should exist (provides context on what analyses were run)
-- `notes/irb-summary.md` may exist (provides expected sample size, endpoints for validation)
-- `notes/irb-scope-comparison.md` may exist (explains any scope differences)
+- `notes/ethics-summary.md` may exist (provides expected sample size, endpoints for validation)
+- `notes/ethics-scope-comparison.md` may exist (explains any scope differences)
 - `data/` folder with CSV/Excel files
 - `figures/` folder with PNG/JPG images
 
 ## Workflow
 
 ```
-[Read scope.md, code-analysis.md, and notes/irb-summary.md]
+[Read scope.md, code-analysis.md, and notes/ethics-summary.md]
      │
      ▼
 [Inventory Data Files] ─── List all CSVs and columns
@@ -99,7 +99,7 @@ If the user confirms an interpretation, document it in `notes/data-analysis.md`:
 [CHECKPOINT: Ask Clarifying Questions] ─── STOP if any ambiguity
      │                                       └── Document responses
      ▼
-[Validate Against IRB] ─── Check sample size, endpoints match expectations
+[Validate Against Ethics Docs] ─── Check sample size, endpoints match expectations
      │
      ▼
 [Analyze Data Files] ─── Parse CSVs, extract statistics
@@ -117,8 +117,8 @@ If the user confirms an interpretation, document it in `notes/data-analysis.md`:
 [Generate notes/data-analysis.md]
      │
      ▼
-[BIOSTATISTICIAN REVIEW] ─── Validate statistical reporting
-     │                        └── agents/biostatistician.md
+[STATISTICAL REVIEW] ─── Validate statistical reporting
+     │                     └── agents/statistical-reviewer.md
      ▼
 [Draft Results] ─── drafts/results.md (with statistical sign-off)
 ```
@@ -246,51 +246,51 @@ After receiving answers, record them:
 
 ---
 
-## Step 3b: Validate Against IRB (If IRB Exists)
+## Step 3b: Validate Against Ethics Docs (If Ethics Docs Exist)
 
-**Skip this step if `notes/irb-summary.md` does not exist.**
+**Skip this step if `notes/ethics-summary.md` does not exist.**
 
-After clarifying data questions, validate that the actual results align with IRB expectations.
+After clarifying data questions, validate that the actual results align with ethics document expectations.
 
-### IRB Validation Checklist
+### Ethics Validation Checklist
 
 ```markdown
-## IRB Results Validation
+## Ethics Document Results Validation
 
-**IRB Document**: [from irb-summary.md]
-**Scope Comparison**: [from irb-scope-comparison.md]
+**Ethics Document**: [from ethics-summary.md]
+**Scope Comparison**: [from ethics-scope-comparison.md]
 
 ### Sample Size Check
 
-| Aspect | IRB Expected | Actual Data | Status |
-|--------|--------------|-------------|--------|
-| Total N | [from IRB] | [from data] | ✓/✗ |
-| Control group | [from IRB] | [from data] | ✓/✗ |
-| Treatment group | [from IRB] | [from data] | ✓/✗ |
+| Aspect | Expected | Actual Data | Status |
+|--------|----------|-------------|--------|
+| Total N | [from ethics doc] | [from data] | ✓/✗ |
+| Control group | [from ethics doc] | [from data] | ✓/✗ |
+| Treatment group | [from ethics doc] | [from data] | ✓/✗ |
 
-**If actual < expected**: Reference irb-scope-comparison.md for explanation
+**If actual < expected**: Reference ethics-scope-comparison.md for explanation
 **If actual > expected**: Unusual - ask user for clarification
 
 ### Endpoints Check
 
-| IRB Endpoint | Present in Data? | Column Name | Notes |
-|--------------|------------------|-------------|-------|
+| Approved Endpoint | Present in Data? | Column Name | Notes |
+|-------------------|------------------|-------------|-------|
 | [primary endpoint] | ✓/✗ | [column] | |
 | [secondary endpoint 1] | ✓/✗ | [column] | |
 | [secondary endpoint 2] | ✓/✗ | [column] | |
 
-**Missing endpoints**: Check irb-scope-comparison.md - may be intentionally out of scope
+**Missing endpoints**: Check ethics-scope-comparison.md - may be intentionally out of scope
 **Extra endpoints**: Exploratory analyses - note as such in Results
 ```
 
 ### If Significant Discrepancies
 
-If you find discrepancies NOT explained by `notes/irb-scope-comparison.md`:
+If you find discrepancies NOT explained by `notes/ethics-scope-comparison.md`:
 
 ```
 I found a discrepancy between expected and actual data:
 
-**IRB Expected Sample Size**: N = 500
+**Expected Sample Size**: N = 500
 **Actual Data**: N = 312
 
 This wasn't documented in the scope comparison.
@@ -537,11 +537,11 @@ Create `notes/data-analysis.md`:
 (If any assumptions were made with user's consent, document them here with justification)
 ```
 
-## Step 8: Biostatistician Review
+## Step 8: Statistical Review
 
-**Before drafting Results, invoke the biostatistician agent for statistical review.**
+**Before drafting Results, invoke the statistical reviewer agent for statistical review.**
 
-Read `agents/biostatistician.md` and execute Phase 3 (Results Section Review):
+Read `agents/statistical-reviewer.md` and execute Phase 3 (Results Section Review):
 
 1. **Verify statistical reporting** — Check all statistics are formatted correctly
 2. **Validate p-values** — Ensure proper formatting (p = 0.043, not p = .043)
@@ -549,7 +549,7 @@ Read `agents/biostatistician.md` and execute Phase 3 (Results Section Review):
 4. **Cross-check with Methods** — Verify Results matches Methods description
 5. **Flag common errors** — Identify interpretation issues
 
-### Biostatistician Results Checkpoint
+### Statistical Reviewer Results Checkpoint
 
 ```markdown
 ## Statistical Reporting Review
@@ -567,7 +567,7 @@ Read `agents/biostatistician.md` and execute Phase 3 (Results Section Review):
 **Statistical Sign-Off**: [ ] Approved for Results drafting
 ```
 
-**Do NOT proceed to Results draft until biostatistician approves.**
+**Do NOT proceed to Results draft until statistical reviewer approves.**
 
 If issues identified:
 1. Correct statistical formatting
@@ -578,7 +578,7 @@ If issues identified:
 
 ## Step 9: Draft Results Section
 
-**Only proceed after user has verified interpretations in Step 6 AND biostatistician sign-off in Step 8.**
+**Only proceed after user has verified interpretations in Step 6 AND statistical reviewer sign-off in Step 8.**
 
 Create `drafts/results.md`:
 
@@ -671,12 +671,12 @@ The [model type] achieved an AUC of X.XX (95% CI: X.XX–X.XX) for [classificati
 
 Save to:
 - `notes/data-analysis.md` - Detailed analysis (includes clarifications log)
-- `drafts/results.md` - Results section draft (with biostatistician approval)
+- `drafts/results.md` - Results section draft (with statistical reviewer approval)
 
 Return to parent skill with summary:
 - Data files analyzed: [n]
 - Figures interpreted: [n]
 - Primary finding confirmed: [yes/no]
-- Biostatistician status: [approved / revisions needed]
+- Statistical reviewer status: [approved / revisions needed]
 - Statistical issues: [list if any]
 - Results word count: [n]

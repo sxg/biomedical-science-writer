@@ -41,8 +41,8 @@ Assembly cannot continue until these issues are resolved.
 Required files:
 - `scope.md` - Constraints (word limit, journal, citation style)
 - `notes/reviewer-feedback.md` - **Academic reviewer sign-off (REQUIRED)**
-- `notes/statistical-review.md` - Biostatistician sign-off
-- `notes/irb-summary.md` - IRB document summary (optional, provides ethics statement)
+- `notes/statistical-review.md` - Statistical reviewer sign-off
+- `notes/ethics-summary.md` - Ethics document summary (optional, provides ethics statement)
 - `drafts/abstract.md` - Abstract and title options
 - `drafts/introduction.md` - Introduction section
 - `drafts/methods.md` - Methods section
@@ -97,12 +97,12 @@ Read `notes/reviewer-feedback.md` and confirm:
 **Proceed?**: [ ] Yes / [ ] No — [reason if no]
 ```
 
-### Biostatistician Sign-Off
+### Statistical Reviewer Sign-Off
 
 Read `notes/statistical-review.md` and confirm:
 
 ```markdown
-**Biostatistician**:
+**Statistical Reviewer**:
 - Sign-off status: [Approved / NOT APPROVED]
 - Statistical issues: [0] remaining
 - Date: [timestamp]
@@ -208,9 +208,9 @@ Create `manuscript.md` with this structure:
 
 ## Ethics Statement
 
-[Auto-populated from notes/irb-summary.md if available, otherwise placeholder]
+[Auto-populated from notes/ethics-summary.md if available, otherwise placeholder]
 
-This study was approved by [Institution] Institutional Review Board (IRB approval number: [from irb-summary.md]). [Informed consent statement as appropriate for study type.]
+This study was approved by [Institution/Ethics Board] (approval number: [from ethics-summary.md]). [Informed consent statement as appropriate for study type.]
 
 ---
 
@@ -251,10 +251,11 @@ This study was approved by [Institution] Institutional Review Board (IRB approva
 
 ## Step 2b: Populate Ethics Statement
 
-### If `notes/irb-summary.md` exists:
+### If `notes/ethics-summary.md` exists:
 
-Extract from the IRB summary:
-- **IRB Approval Number**: Use exact number from "Study Identification" section
+Extract from the ethics summary:
+- **Approval Number**: Use exact number from "Study Identification" section
+- **Approving Body**: IRB, IACUC, Ethics Committee, etc.
 - **Institution Name**: If available, otherwise use "[Institution]" placeholder
 - **Approval Date**: Include if journal requires it
 
@@ -263,14 +264,14 @@ Generate ethics statement:
 ```markdown
 ## Ethics Statement
 
-This study was approved by [Institution Name] Institutional Review Board
-(Protocol #[IRB Approval Number], approved [Approval Date]).
+This study was approved by [Institution Name] [Approving Body]
+(Protocol #[Approval Number], approved [Approval Date]).
 [Informed consent / waiver of consent statement based on study type].
 ```
 
 ### Consent Statement Templates
 
-Based on study type from `notes/irb-summary.md`:
+Based on study type from `notes/ethics-summary.md`:
 
 **Prospective with consent:**
 > Written informed consent was obtained from all participants prior to enrollment.
@@ -278,10 +279,16 @@ Based on study type from `notes/irb-summary.md`:
 **Retrospective/waiver:**
 > The requirement for informed consent was waived due to the retrospective nature of this study.
 
-**Pediatric:**
-> Written informed consent was obtained from parents/guardians, and assent was obtained from participants aged [X-Y] years.
+**Secondary data analysis:**
+> This study used de-identified data and was exempt from consent requirements.
 
-### If `notes/irb-summary.md` does NOT exist:
+**Animal research:**
+> All procedures were approved by [Institution] Institutional Animal Care and Use Committee (IACUC).
+
+**Computational/simulation:**
+> This study did not involve human subjects or animals and did not require ethics approval.
+
+### If `notes/ethics-summary.md` does NOT exist:
 
 Leave placeholder for user to complete:
 
@@ -289,12 +296,13 @@ Leave placeholder for user to complete:
 ## Ethics Statement
 
 [PLACEHOLDER - Please provide:]
-- IRB approval number: ___
+- Approval number: ___
+- Approving body: ___
 - Institution name: ___
 - Consent statement: ___
 ```
 
-Notify user: "No IRB document was provided. Please complete the Ethics Statement section with your IRB approval information."
+Notify user: "No ethics document was provided. Please complete the Ethics Statement section with your approval information, or indicate if ethics approval was not required."
 
 ## Step 3: Apply Word Limit
 

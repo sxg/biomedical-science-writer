@@ -66,15 +66,15 @@ Log clarifications in `notes/code-analysis.md`:
 ## Prerequisites
 
 - `scope.md` must exist
-- `notes/irb-summary.md` may exist (provides approved procedures and endpoints for cross-reference)
-- `notes/irb-scope-comparison.md` may exist (clarifies what was actually implemented vs. approved)
+- `notes/ethics-summary.md` may exist (provides approved procedures and endpoints for cross-reference)
+- `notes/ethics-scope-comparison.md` may exist (clarifies what was actually implemented vs. approved)
 - `code/` directory with cloned repository (from context-ingestion)
 - If code/ doesn't exist, this step produces limited output based on scope.md alone
 
 ## Workflow
 
 ```
-[Read scope.md and notes/irb-summary.md for context]
+[Read scope.md and notes/ethics-summary.md for context]
      │
      ▼
 [Scan Repository Structure]
@@ -92,14 +92,14 @@ Log clarifications in `notes/code-analysis.md`:
 [CHECKPOINT: Verify Methodology] ─── Confirm interpretation with user
      │
      ▼
-[IRB CROSS-REFERENCE] ─── Compare code procedures vs. IRB-approved procedures
+[ETHICS CROSS-REFERENCE] ─── Compare code procedures vs. approved procedures
      │
      ▼
 [Extract Methodology] ─── Generate notes/code-analysis.md
      │
      ▼
-[BIOSTATISTICIAN REVIEW] ─── Validate statistical methods
-     │                        └── agents/biostatistician.md
+[STATISTICAL REVIEW] ─── Validate statistical methods
+     │                     └── agents/statistical-reviewer.md
      ▼
 [Draft Methods] ─── drafts/methods.md (with statistical sign-off)
 ```
@@ -335,59 +335,59 @@ code/
 - [Any unusual or noteworthy approaches]
 ```
 
-## Step 4b: IRB Cross-Reference (If IRB Exists)
+## Step 4b: Ethics Cross-Reference (If Ethics Docs Exist)
 
-**Skip this step if `notes/irb-summary.md` does not exist.**
+**Skip this step if `notes/ethics-summary.md` does not exist.**
 
-Compare the procedures identified in code with the IRB-approved procedures to ensure consistency and identify any discrepancies.
+Compare the procedures identified in code with the approved procedures to ensure consistency and identify any discrepancies.
 
 ### Cross-Reference Table
 
 Create a comparison in `notes/code-analysis.md`:
 
 ```markdown
-## IRB Procedure Cross-Reference
+## Ethics Procedure Cross-Reference
 
-| IRB-Approved Procedure | Implemented in Code? | Code Location | Notes |
-|------------------------|---------------------|---------------|-------|
-| [procedure from IRB] | ✓/✗ | analysis.ipynb | [matches/differs] |
-| [procedure from IRB] | ✓/✗ | [file] | [notes] |
+| Approved Procedure | Implemented in Code? | Code Location | Notes |
+|--------------------|---------------------|---------------|-------|
+| [procedure from ethics] | ✓/✗ | analysis.ipynb | [matches/differs] |
+| [procedure from ethics] | ✓/✗ | [file] | [notes] |
 
-| Code Procedure | In IRB? | Notes |
-|----------------|---------|-------|
+| Code Procedure | In Ethics Doc? | Notes |
+|----------------|----------------|-------|
 | [procedure from code] | ✓/✗ | [expected/unexpected] |
 ```
 
 ### What to Check
 
-1. **Endpoints match**: Are the outcomes analyzed in code the same as IRB endpoints?
-2. **Population criteria**: Does data filtering match IRB inclusion/exclusion?
-3. **Statistical methods**: Are the planned analyses from IRB reflected in code?
-4. **Sample size**: Does actual N align with IRB-justified sample size?
+1. **Endpoints match**: Are the outcomes analyzed in code the same as approved endpoints?
+2. **Population criteria**: Does data filtering match approved inclusion/exclusion?
+3. **Statistical methods**: Are the planned analyses from ethics doc reflected in code?
+4. **Sample size**: Does actual N align with approved sample size?
 
 ### If Discrepancies Found
 
-Reference `notes/irb-scope-comparison.md` to understand if differences were already documented during scoping. If not:
+Reference `notes/ethics-scope-comparison.md` to understand if differences were already documented during scoping. If not:
 
 1. **Document the discrepancy** in code-analysis.md
 2. **Ask user for clarification** before proceeding
 3. **Note implications** for Methods section wording
 
 ```
-I found a discrepancy between the IRB and implemented code:
+I found a discrepancy between the ethics document and implemented code:
 
-**IRB**: Primary endpoint is change in HbA1c at 6 months
-**Code**: Analyzes HbA1c at 3 months and 6 months
+**Ethics Doc**: Primary endpoint is outcome measurement at 6 months
+**Code**: Analyzes measurements at 3 months and 6 months
 
 Was this intentional? Should the Methods describe both timepoints,
 or is one the primary and one exploratory?
 ```
 
-## Step 5: Biostatistician Review
+## Step 5: Statistical Review
 
-**Before drafting Methods, invoke the biostatistician agent for statistical review.**
+**Before drafting Methods, invoke the statistical reviewer agent for statistical review.**
 
-Read `agents/biostatistician.md` and execute Phase 1 (Code Analysis Review):
+Read `agents/statistical-reviewer.md` and execute Phase 1 (Code Analysis Review):
 
 1. **Create statistical methods inventory** from code analysis
 2. **Check assumptions** for each test identified
@@ -395,9 +395,9 @@ Read `agents/biostatistician.md` and execute Phase 1 (Code Analysis Review):
 4. **Assess multiple comparisons** handling
 5. **Evaluate sample size** adequacy
 
-### Biostatistician Checkpoint
+### Statistical Reviewer Checkpoint
 
-The biostatistician must confirm:
+The statistical reviewer must confirm:
 
 ```markdown
 ## Statistical Methods Review
@@ -410,7 +410,7 @@ The biostatistician must confirm:
 **Statistical Sign-Off**: [ ] Approved for Methods drafting
 ```
 
-**Do NOT proceed to Methods draft until biostatistician approves.**
+**Do NOT proceed to Methods draft until statistical reviewer approves.**
 
 If issues identified:
 1. Document concerns in `notes/code-analysis.md`
@@ -421,7 +421,7 @@ If issues identified:
 
 ## Step 6: Draft Methods Section
 
-**Only proceed after biostatistician sign-off from Step 5.**
+**Only proceed after statistical reviewer sign-off from Step 5.**
 
 Create `drafts/methods.md`:
 
@@ -477,12 +477,12 @@ Statistical analysis was performed using Python [version] with [packages]. [Addi
 
 Save to:
 - `notes/code-analysis.md` - Detailed analysis (includes statistical review)
-- `drafts/methods.md` - Methods section draft (with biostatistician approval)
+- `drafts/methods.md` - Methods section draft (with statistical reviewer approval)
 
 Return to parent skill with summary:
 - Files analyzed: [n]
 - Statistical tests identified: [list]
 - ML approach: [yes/no, type]
-- Biostatistician status: [approved / revisions needed]
+- Statistical reviewer status: [approved / revisions needed]
 - Statistical issues: [list if any]
 - Methods word count: [n]

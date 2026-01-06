@@ -7,8 +7,8 @@ Quick reference for conventions in each manuscript section.
 - Concise: 10-15 words maximum
 - Informative: convey main finding or scope
 - Avoid: abbreviations, questions, "A study of..."
-- Good: "MR Fingerprinting Differentiates Tumor from Treatment Effect at 7T"
-- Bad: "A Study Investigating the Use of MRF for Brain Lesion Characterization"
+- Good: "Deep Learning Model Outperforms Traditional Methods for Time Series Prediction"
+- Bad: "A Study Investigating the Use of Machine Learning for Data Analysis"
 
 ## Abstract
 
@@ -47,13 +47,13 @@ Total: 250-300 words (check journal requirements)
 - Past tense, passive voice
 - Specific parameters (not "standard protocol")
 - Reproducibility: enough detail to replicate
-- Ethics statement if human subjects
+- Ethics statement if applicable (human subjects, animals, etc.)
 - Software versions
 
 ### Common Phrases
 - "Data were analyzed using..."
 - "Statistical significance was set at p < 0.05"
-- "The study was approved by [IRB]"
+- "The study was approved by [ethics board/IRB/IACUC]"
 - "[N] patients were excluded due to..."
 
 ## Results
@@ -83,7 +83,7 @@ Total: 250-300 words (check journal requirements)
 1. Principal findings (interpret main result)
 2-3. Comparison with literature
 4. Mechanistic interpretation
-5. Clinical implications
+5. Practical implications
 6. Limitations
 7. Future directions
 

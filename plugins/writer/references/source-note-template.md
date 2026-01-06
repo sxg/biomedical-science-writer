@@ -60,52 +60,52 @@ Use sparingly — paraphrase is usually better, but capture uniquely well-phrase
 
 ## Example Completed Note
 
-# Ma et al., 2013
+# LeCun et al., 2015
 
-**Citation**: Ma D, Gulani V, Seiberlich N, et al. Magnetic resonance fingerprinting. Nature. 2013;495(7440):187-192. doi:10.1038/nature11971
+**Citation**: LeCun Y, Bengio Y, Hinton G. Deep learning. Nature. 2015;521(7553):436-444. doi:10.1038/nature14539
 
-**PMID**: 23486058
-**DOI**: 10.1038/nature11971
-**Type**: Original Research
+**PMID**: 26017442
+**DOI**: 10.1038/nature14539
+**Type**: Review
 
 ## Key Claims
 
-1. MR fingerprinting can simultaneously quantify multiple tissue properties from a single acquisition
-2. The technique is inherently robust to motion and system imperfections
-3. Dictionary matching enables parameter quantification without explicit model fitting
+1. Deep learning methods can automatically discover representations from raw data
+2. Convolutional networks are particularly effective for image and signal processing
+3. Recurrent networks capture temporal dependencies in sequential data
 
 ## Methods Summary
 
-Proof-of-concept study in phantoms and healthy volunteers demonstrating simultaneous T1 and T2 mapping using pseudorandom acquisition patterns matched to a precomputed dictionary.
+Comprehensive review of deep learning methods including convolutional neural networks (CNNs) and recurrent neural networks (RNNs), with discussion of training techniques and applications.
 
-- Study design: Technical development with phantom/volunteer validation
-- Sample size: n = 5 volunteers
-- Key technique: FISP-based MRF with spiral readout
+- Study design: Review/Tutorial
+- Sample size: N/A (review)
+- Key technique: Backpropagation, gradient descent, representation learning
 
 ## Key Results
 
-- T1/T2 values within 5% of gold standard in phantoms
-- Acquisition time: 12 seconds per slice
-- Robust to B0/B1 inhomogeneity
+- CNNs achieve state-of-the-art in image classification
+- RNNs with LSTM units excel at sequence modeling
+- Deep learning reduces need for hand-engineered features
 
 ## Relevance to Current Study
 
 **Relationship**: Provides Context (foundational paper)
 
-This is the seminal MRF paper that established the technique we are building upon. Our study extends this approach to 7T with optimized sequences for brain tumor characterization. Cite in Introduction as foundational reference.
+This is a seminal review paper that established the theoretical foundation for deep learning approaches. Our study builds upon these methods for our specific application domain. Cite in Introduction as foundational reference.
 
 ## Quotable Phrases
 
-- "a new approach to data acquisition, post-processing and visualization" (p. 187)
+- "representation learning with multiple levels of abstraction" (p. 436)
 
 ## For Discussion Section
 
 **Use this source to:**
-- [x] Provide context for MRF technique background
+- [x] Provide context for deep learning methodology
 - [ ] Support our finding that...
 - [ ] Contrast with our finding because...
 - [ ] Explain mechanism of...
 
 ## Tags
 
-#MRF #quantitative-MRI #foundational #T1-mapping #T2-mapping
+#deep-learning #neural-networks #foundational #methodology #review

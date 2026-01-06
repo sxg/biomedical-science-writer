@@ -29,7 +29,7 @@ User provides path to project folder (or current directory if already there).
 [Inventory Materials] ─── List all available files
      │
      ▼
-[Extract IRB Content] ─── If irb/ exists, generate notes/irb-summary.md
+[Extract Ethics Content] ─── If ethics/ exists, generate notes/ethics-summary.md
      │
      ▼
 [Generate inventory.md] ─── Structured summary
@@ -45,7 +45,7 @@ project/
 ├── papers/       # Must exist (can be empty)
 ├── data/         # Must exist (can be empty)
 ├── figures/      # Must exist (can be empty)
-├── irb/          # Optional - IRB protocol and regulatory documents
+├── ethics/       # Optional - Ethics/governance documents (IRB, IACUC, etc.)
 └── config.md     # Must exist
 ```
 
@@ -77,7 +77,7 @@ access: private
 
 ## Constraints
 word_limit: 3500
-target_journal: Radiology: Artificial Intelligence
+target_journal: [Target Journal]
 citation_style: AMA
 
 ## Additional Notes
@@ -171,12 +171,12 @@ Identify:
 - Key script files
 - Requirements/dependencies file
 
-### IRB Inventory (Optional)
+### Ethics Inventory (Optional)
 
-If `irb/` folder exists, scan for regulatory documents:
+If `ethics/` folder exists, scan for governance documents:
 
 ```bash
-ls -la irb/*.pdf irb/*.docx irb/*.md 2>/dev/null
+ls -la ethics/*.pdf ethics/*.docx ethics/*.md 2>/dev/null
 ```
 
 Supported formats:
@@ -184,38 +184,39 @@ Supported formats:
 - `.pdf` - Read with Claude's native PDF capability
 - `.docx` - Extract text using `document-skills:docx` skill
 
-## Step 5: Extract IRB Content
+## Step 5: Extract Ethics Content
 
-**Skip this step if `irb/` folder does not exist or is empty.**
+**Skip this step if `ethics/` folder does not exist or is empty.**
 
-For each document in `irb/`:
+For each document in `ethics/`:
 
 1. Read the document content using appropriate method for format
 2. Extract comprehensive study information
-3. Generate `notes/irb-summary.md`
+3. Generate `notes/ethics-summary.md`
 
-### IRB Summary Template
+### Ethics Summary Template
 
-Create `notes/irb-summary.md`:
+Create `notes/ethics-summary.md`:
 
 ```markdown
-# IRB Document Summary
+# Ethics/Governance Document Summary
 
 **Source**: [filename]
 **Extracted**: [timestamp]
 
 ## Study Identification
 - **Protocol Title**: [extracted or "[not found]"]
-- **IRB Approval Number**: [extracted or "[not found]"]
+- **Approval Number**: [extracted or "[not found]"]
+- **Approving Body**: [IRB, IACUC, Ethics Committee, etc.]
 - **Principal Investigator**: [extracted or "[not found]"]
 - **Approval Date**: [extracted or "[not found]"]
 
 ## Study Design
-- **Study Type**: [interventional/observational/retrospective/etc.]
-- **Design**: [RCT, cohort, case-control, cross-sectional, etc.]
+- **Study Type**: [interventional/observational/retrospective/computational/etc.]
+- **Design**: [RCT, cohort, case-control, cross-sectional, simulation, etc.]
 - **Duration**: [study period]
 
-## Population
+## Population/Subjects
 - **Target Population**: [description]
 - **Inclusion Criteria**:
   - [criterion 1]
@@ -232,7 +233,7 @@ Create `notes/irb-summary.md`:
 - [Procedure 2]
 - ...
 
-## Endpoints
+## Endpoints/Outcomes
 - **Primary**: [endpoint]
 - **Secondary**: [endpoints]
 
@@ -294,13 +295,13 @@ Project: [folder name]
   - `models.py` - ML models
 - **Dependencies**: pandas, scikit-learn, matplotlib, ...
 
-## IRB Documents
+## Ethics Documents
 
 | Filename | Format | Status |
 |----------|--------|--------|
-| protocol.pdf | PDF | ✓ Extracted to notes/irb-summary.md |
+| protocol.pdf | PDF | ✓ Extracted to notes/ethics-summary.md |
 
-*Or: "No IRB documents provided"*
+*Or: "No ethics documents provided"*
 
 ## Summary
 
@@ -310,7 +311,7 @@ Project: [folder name]
 | Data files | [n] | ✓ Ready |
 | Figures | [n] | ✓ Ready |
 | Code repo | 1 | ✓ Cloned |
-| IRB documents | [n] | ✓ Extracted / Not provided |
+| Ethics documents | [n] | ✓ Extracted / Not provided |
 
 ## Missing/Warnings
 

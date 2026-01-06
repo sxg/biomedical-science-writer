@@ -16,7 +16,7 @@ Processes user-provided PDFs one at a time using isolated subagents to prevent c
 │  The orchestrator (you, running this skill) may ONLY read:         │
 │  - scope.md                                                        │
 │  - inventory.md                                                    │
-│  - notes/irb-summary.md                                            │
+│  - notes/ethics-summary.md                                            │
 │  - notes/papers/*.md (the condensed notes, NOT PDFs)               │
 │  - notes/bibliography.md                                           │
 │  - notes/literature-synthesis.md                                   │
@@ -75,7 +75,7 @@ Each paper is processed by an isolated subagent to prevent context overflow:
 ## Prerequisites
 
 - `scope.md` must exist (from scoping step)
-- `notes/irb-summary.md` may exist (provides study objectives and population context)
+- `notes/ethics-summary.md` may exist (provides study objectives and population context)
 - `papers/` folder with PDF files to process
 - Create directories: `notes/papers/`, `notes/papers-library/`, `drafts/`
 
@@ -119,7 +119,7 @@ Create a detailed scope summary to pass to each subagent:
 ```markdown
 ## Manuscript Context
 
-You are helping write a biomedical research manuscript. Your job is to read ONE paper and extract information most relevant to this manuscript.
+You are helping write a scientific research manuscript. Your job is to read ONE paper and extract information most relevant to this manuscript.
 
 ### Our Research Question
 [Full research question from scope.md]
@@ -147,8 +147,8 @@ As you read, focus on extracting:
 6. **Quotable statements** that frame the field well
 ```
 
-If `notes/irb-summary.md` exists, also include:
-- Study objectives from IRB
+If `notes/ethics-summary.md` exists, also include:
+- Study objectives from ethics document
 - Target population details
 - Approved procedures
 
@@ -204,7 +204,7 @@ Task(
 
   ## Your Role
 
-  You are a research assistant helping write a biomedical manuscript. Your job is to:
+  You are a research assistant helping write a scientific manuscript. Your job is to:
   1. Read ONE paper
   2. Extract information most relevant to our manuscript
   3. Write condensed notes highlighting what's useful for our paper

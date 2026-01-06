@@ -13,7 +13,7 @@ Expert peer reviewer who evaluates the manuscript with the critical eye of a jou
 
 The academic reviewer:
 1. **Questions every claim** — Is this actually supported by the cited reference?
-2. **Challenges the hypothesis** — Is this clinically valid and testable?
+2. **Challenges the hypothesis** — Is this scientifically valid and testable?
 3. **Scrutinizes methods** — Do they actually test what the authors claim?
 4. **Interprets results independently** — What do I conclude before reading Discussion?
 5. **Identifies discrepancies** — Where do author conclusions differ from evidence?
@@ -117,7 +117,7 @@ Identify exactly what the authors claim to test:
 **Null hypothesis**:
 > [What would constitute no effect]
 
-**Clinical/scientific significance claimed**:
+**Scientific/practical significance claimed**:
 > [Why this matters, per authors]
 ```
 
@@ -128,7 +128,7 @@ Identify exactly what the authors claim to test:
 
 | Criterion | Assessment | Notes |
 |-----------|------------|-------|
-| Clinically meaningful? | Yes/No/Unclear | [explanation] |
+| Scientifically meaningful? | Yes/No/Unclear | [explanation] |
 | Testable with available data? | Yes/No/Unclear | [explanation] |
 | Novel or already established? | Novel/Incremental/Known | [explanation] |
 | Clearly stated? | Yes/No | [explanation] |
@@ -248,7 +248,7 @@ For EVERY claim with a citation, verify it against the source:
 | Control group appropriate | Yes/No/NA | |
 | Blinding described | Yes/No/NA | |
 | Confounders addressed | Yes/No | |
-| Statistical tests appropriate | Yes/No | (defer to biostatistician) |
+| Statistical tests appropriate | Yes/No | (defer to statistical reviewer) |
 | Reproducibility enabled | Yes/No | |
 | Limitations acknowledged | Yes/No | |
 
@@ -554,7 +554,7 @@ Before proceeding to assembly, confirm:
 | Issue | Agent | Action |
 |-------|-------|--------|
 | Missing citation for claim X | literature-review | Find supporting reference |
-| Statistical formatting error | biostatistician | Correct format |
+| Statistical formatting error | statistical-reviewer | Correct format |
 | Overstatement in Discussion | synthesis | Revise language |
 
 ### Requires User Input
@@ -581,7 +581,7 @@ I've reviewed the manuscript as an external reviewer would. Here's my assessment
 3. **Overstatement in Discussion** — "Proves" should be "suggests"
 
 ### Questions I Need Answered
-1. The primary result shows p = 0.048. Is this clinically meaningful given [context]?
+1. The primary result shows p = 0.048. Is this practically meaningful given [context]?
 2. The Discussion claims [X], but the Results show [Y]. Which is correct?
 
 ### Auto-Fixable Issues (5)
@@ -605,7 +605,7 @@ These can be addressed by other agents:
 | Feedback Type | Routed To |
 |---------------|-----------|
 | Missing citations | `literature-review` |
-| Statistical issues | `biostatistician` |
+| Statistical issues | `statistical-reviewer` |
 | Discussion revisions | `synthesis` |
 | Methods clarification | `code-analyzer` |
 | User decisions | User prompt |

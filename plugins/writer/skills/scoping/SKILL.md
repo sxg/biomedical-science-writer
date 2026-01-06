@@ -10,13 +10,13 @@ Conducts a focused conversation to establish the research scope, then generates 
 ## Prerequisites
 
 - `inventory.md` must exist (from context-ingestion step)
-- `notes/irb-summary.md` may exist (if IRB document was provided)
+- `notes/ethics-summary.md` may exist (if ethics document was provided)
 - Review inventory before starting conversation
 
 ## Workflow
 
 ```
-[Read inventory.md and notes/irb-summary.md]
+[Read inventory.md and notes/ethics-summary.md]
      │
      ▼
 [Ask: Research Question]
@@ -31,13 +31,13 @@ Conducts a focused conversation to establish the research scope, then generates 
 [Ask: Additional Context]
      │
      ▼
-[IRB Scope Comparison] ─── If IRB exists, compare and confirm discrepancies
+[Ethics Scope Comparison] ─── If ethics docs exist, compare and confirm discrepancies
      │
      ▼
-[Generate scope.md and notes/irb-scope-comparison.md]
+[Generate scope.md and notes/ethics-scope-comparison.md]
 ```
 
-## Step 1: Review Inventory and IRB
+## Step 1: Review Inventory and Ethics Documents
 
 Before asking questions, read `inventory.md` to understand:
 - How many papers are available for literature context
@@ -45,13 +45,13 @@ Before asking questions, read `inventory.md` to understand:
 - What figures are already generated
 - Whether code repository is available
 
-Also check if `notes/irb-summary.md` exists. If it does, read it to understand:
-- IRB-approved population and inclusion/exclusion criteria
+Also check if `notes/ethics-summary.md` exists. If it does, read it to understand:
+- Approved population and inclusion/exclusion criteria
 - Approved procedures and endpoints
 - Sample size justification
 - Study design
 
-This context helps ask informed questions and validate user responses. Note that IRB scope is often broader than actual research scope.
+This context helps ask informed questions and validate user responses. Note that ethics approval scope is often broader than actual research scope.
 
 ## Step 2: Scoping Conversation
 
@@ -60,10 +60,10 @@ Ask questions **one at a time**. Wait for response before proceeding.
 ### Question 1: Research Question
 
 > "What research question does this study address?
-> 
+>
 > Try to frame it as a specific, answerable question. For example:
-> - 'Can MR fingerprinting differentiate tumor recurrence from treatment effect?'
-> - 'Does quantitative T1 mapping predict treatment response in glioblastoma?'"
+> - 'Does the proposed method outperform existing approaches on benchmark datasets?'
+> - 'What factors predict the observed outcome in this population?'"
 
 **Good research questions have:**
 - Specific population/context
@@ -101,54 +101,54 @@ Ask for:
 ### Question 4: Additional Context (Optional)
 
 > "Is there anything else I should know about this study?
-> 
+>
 > For example:
 > - Study limitations you want to acknowledge
 > - Specific papers you want to cite or respond to
-> - Clinical implications to emphasize"
+> - Practical implications to emphasize"
 
-## Step 3: IRB Scope Comparison (If IRB Exists)
+## Step 3: Ethics Scope Comparison (If Ethics Docs Exist)
 
-**Skip this step if `notes/irb-summary.md` does not exist.**
+**Skip this step if `notes/ethics-summary.md` does not exist.**
 
-After gathering user's stated scope, compare it against IRB document and present discrepancies for confirmation.
+After gathering user's stated scope, compare it against the ethics document and present discrepancies for confirmation.
 
 ### Comparison Table
 
 Present to user:
 
-> "I've compared your stated research scope with the IRB document.
+> "I've compared your stated research scope with the ethics/governance document.
 >
-> | Aspect | IRB Document | Your Stated Scope |
-> |--------|--------------|-------------------|
-> | Population | [from IRB] | [from user] |
-> | Sample size | [from IRB] | [from user] |
-> | Endpoints | [from IRB] | [from user] |
-> | Procedures | [from IRB] | [from user] |
+> | Aspect | Ethics Document | Your Stated Scope |
+> |--------|-----------------|-------------------|
+> | Population | [from ethics] | [from user] |
+> | Sample size | [from ethics] | [from user] |
+> | Endpoints | [from ethics] | [from user] |
+> | Procedures | [from ethics] | [from user] |
 >
 > **Please confirm:**
 > 1. Are these differences intentional? (subset of approved protocol)
-> 2. Any context for the narrower scope? (e.g., 'questionnaire data not yet analyzed')
+> 2. Any context for the narrower scope? (e.g., 'subset of data analyzed')
 > 3. Anything I've misunderstood?"
 
 ### Document User Responses
 
-Create `notes/irb-scope-comparison.md`:
+Create `notes/ethics-scope-comparison.md`:
 
 ```markdown
-# IRB vs Actual Scope Comparison
+# Ethics vs Actual Scope Comparison
 
 **Generated**: [timestamp]
-**IRB Source**: [filename from irb-summary.md]
+**Ethics Source**: [filename from ethics-summary.md]
 
 ## Comparison
 
-| Aspect | IRB Document | Actual Scope | Explanation |
-|--------|--------------|--------------|-------------|
-| Population | [from IRB] | [from user] | [user explanation] |
-| Sample size | [from IRB] | [from user] | [user explanation] |
-| Endpoints | [from IRB] | [from user] | [user explanation] |
-| Procedures | [from IRB] | [from user] | [user explanation] |
+| Aspect | Ethics Document | Actual Scope | Explanation |
+|--------|-----------------|--------------|-------------|
+| Population | [from ethics] | [from user] | [user explanation] |
+| Sample size | [from ethics] | [from user] | [user explanation] |
+| Endpoints | [from ethics] | [from user] | [user explanation] |
+| Procedures | [from ethics] | [from user] | [user explanation] |
 
 ## User Confirmation
 
@@ -158,11 +158,11 @@ Create `notes/irb-scope-comparison.md`:
 
 ## Implications for Manuscript
 
-- [Note any elements from IRB that should NOT appear in manuscript]
+- [Note any elements from ethics doc that should NOT appear in manuscript]
 - [Note any elements that need careful framing]
 ```
 
-This document provides audit trail and guides later steps when they need to understand why IRB and manuscript scope differ.
+This document provides audit trail and guides later steps when they need to understand why ethics approval scope and manuscript scope differ.
 
 ## Step 4: Generate scope.md
 
@@ -230,10 +230,10 @@ Generated: [timestamp]
 - Repository: [url]
 - Analysis approach: [inferred from code inventory]
 
-### IRB Document
+### Ethics Documents
 - **Available**: [yes/no]
-- **Ethics Approval Number**: [from irb-summary.md or "to be added manually"]
-- **Scope Notes**: [see notes/irb-scope-comparison.md for differences]
+- **Ethics Approval Number**: [from ethics-summary.md or "to be added manually"]
+- **Scope Notes**: [see notes/ethics-scope-comparison.md for differences]
 
 ## Writing Guidance
 
@@ -255,13 +255,13 @@ Before saving scope.md, verify:
 - [ ] Key findings are supported by available data
 - [ ] Word limit is realistic for content
 - [ ] All necessary context is captured
-- [ ] If IRB exists: discrepancies documented and confirmed by user
+- [ ] If ethics docs exist: discrepancies documented and confirmed by user
 
 ## Output
 
 Save to:
 - `project/scope.md` - Main scope document
-- `notes/irb-scope-comparison.md` - IRB comparison (if IRB exists)
+- `notes/ethics-scope-comparison.md` - Ethics comparison (if ethics docs exist)
 
 Summarize back to user:
 
