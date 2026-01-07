@@ -5,7 +5,7 @@
   },
   "metadata": {
     "description": "Claude Code plugins for scientific research and writing",
-    "version": "1.2.0",
+    "version": "1.3.0",
     "pluginRoot": "./plugins"
   },
   "plugins": [
@@ -13,7 +13,7 @@
       "name": "writer",
       "source": "./plugins/writer",
       "description": "Draft scientific research manuscripts from organized project folders with papers, data, figures, and GitHub code repositories. Orchestrates an 8-step workflow with specialist agents: statistical reviewer for quantitative accuracy, academic reviewer for publication readiness.",
-      "version": "3.2.0",
+      "version": "3.3.0",
       "author": {
         "name": "sxg"
       },

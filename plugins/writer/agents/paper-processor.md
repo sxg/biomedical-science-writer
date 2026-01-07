@@ -122,6 +122,19 @@ Create markdown following this template:
 - [ ] Discussion - comparison of findings
 - [ ] Discussion - interpretation
 
+## Recommendation
+
+**Include in draft?**: [Yes | No]
+
+**Rationale**: [1-2 sentences explaining the recommendation]
+
+Consider:
+- Is the paper directly relevant to our research question?
+- Does it provide meaningful support, contrast, or context?
+- Would citing it improve the manuscript, or would it feel forced?
+
+If "No": The paper may be tangential, address a different population, use incomparable methods, or simply not add value to the narrative.
+
 ## Tags
 
 #[topic1] #[topic2] #[methodology]
@@ -139,6 +152,7 @@ Return a brief summary to the orchestrator:
 Processed: {paper_path}
 Citation: [First Author] et al., [Year]. [Journal].
 Relevance: [Supports/Contradicts/Context] - [one sentence]
+Recommendation: [Include | Exclude] - [brief rationale]
 Output: {output_path}
 ```
 

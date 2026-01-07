@@ -230,9 +230,10 @@ Task(
      - Results we can compare against?
      - Contradictions we need to address?
      - Quotes that frame the problem well?
-  5. Write condensed notes to the output file
-  6. Return a one-line summary
-  7. EXIT - Do not process any other papers
+  5. **Recommend inclusion**: Should this paper be cited in our manuscript?
+  6. Write condensed notes to the output file
+  7. Return a summary with your recommendation
+  8. EXIT - Do not process any other papers
 
   ## Note Template
 
@@ -281,6 +282,11 @@ Task(
 
   > "[Another useful quote if available]" (p. X)
 
+  ## Recommendation
+
+  **Include in draft?**: [Yes / No]
+  **Rationale**: [1-2 sentences - Is this paper directly relevant? Would citing it feel natural or forced?]
+
   ## Tags
   #[topic1] #[topic2] #[methodology]
   """
@@ -293,12 +299,15 @@ Wait for the subagent to complete before processing the next paper.
 
 ### 3c. Update Status
 
+Track the subagent's recommendation for each paper:
+
 ```markdown
-| # | Filename | Status |
-|---|----------|--------|
-| 1 | smith-2023.pdf | ✓ Complete |
-| 2 | jones-2022.pdf | ✓ Complete |
-| 3 | wilson-2021.pdf | Processing... |
+| # | Filename | Status | Recommendation |
+|---|----------|--------|----------------|
+| 1 | smith-2023.pdf | ✓ Complete | Include |
+| 2 | jones-2022.pdf | ✓ Complete | Include |
+| 3 | wilson-2021.pdf | ✓ Complete | Exclude - different population |
+| 4 | brown-2020.pdf | Processing... | - |
 ```
 
 ### 3d. Handle Errors
@@ -359,20 +368,19 @@ Create `notes/literature-synthesis.md`:
 
 ## Paper Citation Tracker
 
-Track where each paper naturally fits. **Do not force papers** — if a paper doesn't contribute meaningfully, mark it as "Not Applicable" without guilt.
+Use the subagent recommendations from Step 3 to populate this table. Papers recommended for exclusion by the subagent should be marked "Not Applicable."
 
-| # | Citation | Note File | Natural Fit | Status |
-|---|----------|-----------|-------------|--------|
-| 1 | Smith et al., 2023 | notes/papers/smith-2023.md | Intro: establishes prevalence | Planned |
-| 2 | Jones et al., 2022 | notes/papers/jones-2022.md | Discussion: comparable methods | Planned |
-| 3 | Wilson et al., 2021 | notes/papers/wilson-2021.md | Discussion: contrasting findings | Planned |
-| 4 | Brown et al., 2020 | notes/papers/brown-2020.md | Different population, tangential | Not Applicable |
+| # | Citation | Note File | Subagent Rec | Natural Fit | Status |
+|---|----------|-----------|--------------|-------------|--------|
+| 1 | Smith et al., 2023 | notes/papers/smith-2023.md | Include | Intro: establishes prevalence | Planned |
+| 2 | Jones et al., 2022 | notes/papers/jones-2022.md | Include | Discussion: comparable methods | Planned |
+| 3 | Wilson et al., 2021 | notes/papers/wilson-2021.md | Exclude | Different population | Not Applicable |
 
 **Status Legend**:
-- **Planned**: Paper has a natural place in the manuscript
-- **Not Applicable**: Paper doesn't fit naturally — this is acceptable
+- **Planned**: Subagent recommended inclusion and paper has a natural place
+- **Not Applicable**: Subagent recommended exclusion or paper doesn't fit naturally
 
-**Guidance**: The goal is a coherent manuscript, not maximum citations. A paper that requires an awkward sentence or forced parenthetical to include should be marked "Not Applicable."
+**Guidance**: Trust the subagent's assessment of relevance. The goal is a coherent manuscript, not maximum citations.
 
 ---
 
@@ -507,8 +515,8 @@ Save to:
 
 Return summary:
 - Papers processed: [n]
-- Papers with planned citations: [n]
-- Papers not applicable: [n]
+- Papers recommended for inclusion: [n]
+- Papers recommended for exclusion: [n]
 - Papers with issues: [n]
 - Key themes identified: [n]
 - Introduction word count: [n]
