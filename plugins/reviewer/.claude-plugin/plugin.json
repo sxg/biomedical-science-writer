@@ -1,0 +1,20 @@
+{
+  "name": "reviewer",
+  "version": "1.0.0",
+  "description": "Review and critique scientific manuscripts. Identifies critical issues with detailed explanations and recommendations, providing an overall assessment with accept/revise/reject recommendation.",
+  "author": {
+    "name": "sxg"
+  },
+  "repository": "https://github.com/sxg/science",
+  "homepage": "https://github.com/sxg/science#readme",
+  "license": "MIT",
+  "keywords": [
+    "manuscript",
+    "peer-review",
+    "scientific-writing",
+    "critique",
+    "research"
+  ],
+  "skills": "./skills/",
+  "commands": "./commands/"
+}
